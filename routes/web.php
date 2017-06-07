@@ -37,5 +37,9 @@ Route::group(['prefix' => 'admin'], function () {
             Route::delete('/', ['as' => 'app.categories_translations.delete', 'uses' => 'VRCategoriesTranslationsController@adminDestroy']);
         });
     });
+
+
+
+    
 });
 
