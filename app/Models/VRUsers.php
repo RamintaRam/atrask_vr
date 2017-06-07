@@ -17,7 +17,10 @@ class VRUsers extends CoreModel
 
     protected $fillable = ['id', 'name', 'email', 'password', 'phone'];
 
-    public static function create($record)
+
+    public function connection()
     {
+        return $this->belongsToMany(VRRoles::class, 'vr_connections_users_roles', 'user_id', 'role_id');
     }
+
 }

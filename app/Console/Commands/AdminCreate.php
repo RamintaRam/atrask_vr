@@ -13,7 +13,7 @@ class AdminCreate extends Command
      *
      * @var string
      */
-    protected $signature = 'create:admin';
+    protected $signature = 'make:admin';
 
     /**
      * The console command description.
@@ -41,7 +41,7 @@ class AdminCreate extends Command
     {
         $this->comment('Creating Administrator');
 
-        $record = [
+        $record = VRUsers::create([
             'id'=> Uuid::uuid4(),
             'name'=> $name = $this->ask('Please provide admins name'),
             'email'=> $email = $this->ask('Please provide admins email'),
@@ -49,8 +49,11 @@ class AdminCreate extends Command
             'password'=> bcrypt($password = $this->secret('Please provide password')),
 
 
-        ];
+        ]);
 
-        VRUsers::create($record);
+//        VRUsers::create($record);
+        $record->connection()->sync('super-admin');
+
+        $this->comment('Admin created!');
     }
 }
