@@ -4,7 +4,7 @@ namespace App;
 
 
 
-class VRConnectionsRolesUsers extends CoreModel
+class VRConnectionsUsersRoles extends CoreModel
 {
     protected $table = 'vr_connections_users_roles';
 
