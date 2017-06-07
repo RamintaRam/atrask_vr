@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\VRUsers;
 use Illuminate\Console\Command;
 use Ramsey\Uuid\Uuid;
 
@@ -43,7 +44,6 @@ class AdminCreate extends Command
         $record = [
             'id'=> Uuid::uuid4(),
             'name'=> $name = $this->ask('Please provide admins name'),
-            'surname'=> $lastName = $this->ask('Please provide admins surname'),
             'email'=> $email = $this->ask('Please provide admins email'),
             'phone'=> $phone = $this->ask('Please provide admins phone number'),
             'password'=> bcrypt($password = $this->secret('Please provide password')),
@@ -51,6 +51,6 @@ class AdminCreate extends Command
 
         ];
 
-//        VRUsers::create($record);
+        VRUsers::create($record);
     }
 }

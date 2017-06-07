@@ -15,5 +15,9 @@ class VRUsers extends CoreModel
 
     protected $table = 'vr_users';
 
-    protected $fillable = ['id', 'first_name', 'last_name', 'email', 'password', 'phone'];
+    protected $fillable = ['id', 'name', 'email', 'password', 'phone'];
+
+    public static function create($record)
+    {
+    }
 }
