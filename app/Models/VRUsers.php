@@ -7,8 +7,9 @@ use App\CoreModel;
 use App\VRConnectionsUsersRoles;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class VRUsers extends CoreModel
+class VRUsers extends Authenticatable
 {
     use Notifiable;
 
@@ -16,7 +17,16 @@ class VRUsers extends CoreModel
 
     protected $table = 'vr_users';
 
-    protected $fillable = ['id', 'name', 'email', 'password', 'phone'];
+    protected $fillable = ['id', 'name', 'email', 'password', 'phone', 'remember_token'];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password'
+    ];
 
 
     public function connection()
