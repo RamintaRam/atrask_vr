@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 
-class VRConnectionsRolesUsers extends Model
+
+class VRConnectionsRolesUsers extends CoreModel
 {
     protected $table = 'vr_connections_users_roles';
 
