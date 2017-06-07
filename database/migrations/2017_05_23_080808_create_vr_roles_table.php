@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateVrOrdersTable extends Migration {
+class CreateVrRolesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,14 +12,14 @@ class CreateVrOrdersTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('vr_orders', function(Blueprint $table)
+		Schema::create('vr_roles', function(Blueprint $table)
 		{
 			$table->integer('count', true);
 			$table->string('id', 36)->unique('id_UNIQUE');
 			$table->timestamps();
 			$table->softDeletes();
-			$table->enum('order_status', array('reserved','canceled','sold'));
-			$table->string('user_id', 36)->nullable()->index('fk_vr_orders_vr_users1_idx');
+			$table->string('name');
+			$table->string('comment')->nullable();
 		});
 	}
 
@@ -31,7 +31,7 @@ class CreateVrOrdersTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('vr_orders');
+		Schema::drop('vr_roles');
 	}
 
 }

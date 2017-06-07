@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateVrPagesTable extends Migration {
+class CreateVrResourcesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,14 +12,17 @@ class CreateVrPagesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('vr_pages', function(Blueprint $table)
+		Schema::create('vr_resources', function(Blueprint $table)
 		{
 			$table->integer('count', true);
 			$table->string('id', 36)->unique('id_UNIQUE');
 			$table->timestamps();
 			$table->softDeletes();
-			$table->string('category_id', 36)->index('fk_vr_pages_vr_pages_category1_idx');
-			$table->string('resource_id', 36)->nullable()->index('fk_vr_pages_vr_resources1_idx');
+			$table->string('mime_type');
+			$table->string('path');
+			$table->integer('width')->nullable();
+			$table->integer('size')->nullable();
+			$table->integer('height')->nullable();
 		});
 	}
 
@@ -31,7 +34,7 @@ class CreateVrPagesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('vr_pages');
+		Schema::drop('vr_resources');
 	}
 
 }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateVrUsersTable extends Migration {
+class CreateVrPermissionsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,18 +12,14 @@ class CreateVrUsersTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('vr_users', function(Blueprint $table)
+		Schema::create('vr_permissions', function(Blueprint $table)
 		{
 			$table->integer('count', true);
 			$table->string('id', 36)->unique('id_UNIQUE');
 			$table->timestamps();
 			$table->softDeletes();
-			$table->string('first_name');
-			$table->string('last_name')->nullable();
-			$table->string('email')->unique('email_UNIQUE')->nullable();
-			$table->string('password')->nullable();
-			$table->string('phone', 45)->nullable();
-			$table->string('remember_token', 100)->nullable();
+			$table->string('name');
+			$table->string('comment')->nullable();
 		});
 	}
 
@@ -35,7 +31,7 @@ class CreateVrUsersTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('vr_users');
+		Schema::drop('vr_permissions');
 	}
 
 }

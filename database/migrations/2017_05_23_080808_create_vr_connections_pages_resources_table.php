@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateVrPagesResourcesConnTable extends Migration {
+class CreateVrConnectionsPagesResourcesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,12 @@ class CreateVrPagesResourcesConnTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('vr_pages_resources_conn', function(Blueprint $table)
+		Schema::create('vr_connections_pages_resources', function(Blueprint $table)
 		{
 			$table->integer('count', true);
 			$table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-			$table->string('page_id', 36)->nullable()->index('fk_vr_page_recourses_vr_pages1_idx');
-			$table->string('resource_id', 36)->nullable()->index('fk_vr_page_recourses_vr_resources1_idx');
+			$table->string('resource_id', 36)->index('fk_vr_connections_users_resources_vr_resources1_idx');
+			$table->string('page_id', 36)->index('fk_vr_connections_pages_resources_vr_pages1_idx');
 		});
 	}
 
@@ -29,7 +29,7 @@ class CreateVrPagesResourcesConnTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('vr_pages_resources_conn');
+		Schema::drop('vr_connections_pages_resources');
 	}
 
 }

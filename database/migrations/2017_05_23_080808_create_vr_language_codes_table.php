@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateVrRolesTable extends Migration {
+class CreateVrLanguageCodesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,13 +12,12 @@ class CreateVrRolesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('vr_roles', function(Blueprint $table)
+		Schema::create('vr_language_codes', function(Blueprint $table)
 		{
 			$table->integer('count', true);
 			$table->string('id', 36)->unique('id_UNIQUE');
-			$table->timestamps();
-			$table->softDeletes();
-			$table->string('name', 45);
+			$table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+			$table->string('language_code', 3)->unique('language_code_UNIQUE');
 		});
 	}
 
@@ -30,7 +29,7 @@ class CreateVrRolesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('vr_roles');
+		Schema::drop('vr_language_codes');
 	}
 
 }

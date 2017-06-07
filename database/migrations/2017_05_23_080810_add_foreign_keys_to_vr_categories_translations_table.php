@@ -14,8 +14,8 @@ class AddForeignKeysToVrCategoriesTranslationsTable extends Migration {
 	{
 		Schema::table('vr_categories_translations', function(Blueprint $table)
 		{
-			$table->foreign('language_id', 'fk_vr_page_category_translations_vr_languages1')->references('id')->on('vr_languages')->onUpdate('NO ACTION')->onDelete('NO ACTION');
-			$table->foreign('category_id', 'fk_vr_page_category_translations_vr_pages_category1')->references('id')->on('vr_categories')->onUpdate('NO ACTION')->onDelete('CASCADE');
+			$table->foreign('category_id', 'fk_vr_categories_translations_vr_categories1')->references('id')->on('vr_categories')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+			$table->foreign('language_code', 'fk_vr_categories_translations_vr_language_codes1')->references('language_code')->on('vr_language_codes')->onUpdate('NO ACTION')->onDelete('NO ACTION');
 		});
 	}
 
@@ -29,8 +29,8 @@ class AddForeignKeysToVrCategoriesTranslationsTable extends Migration {
 	{
 		Schema::table('vr_categories_translations', function(Blueprint $table)
 		{
-			$table->dropForeign('fk_vr_page_category_translations_vr_languages1');
-			$table->dropForeign('fk_vr_page_category_translations_vr_pages_category1');
+			$table->dropForeign('fk_vr_categories_translations_vr_categories1');
+			$table->dropForeign('fk_vr_categories_translations_vr_language_codes1');
 		});
 	}
 
