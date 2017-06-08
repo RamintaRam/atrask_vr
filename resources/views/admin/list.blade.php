@@ -61,7 +61,7 @@
 @section('scripts')
 
     <script>
-        function enableDisable()
+        function enableDisable(URL, value)
         {
             alert('Hello')
         }
