@@ -13,4 +13,6 @@ return [
     'view' => 'Žiūrėti',
     'edit' => 'Keisti',
     'delete' => 'Ištrinti',
+    'activate' => 'Aktyvuoti',
+    'disable' => 'Išjungti',
 ];

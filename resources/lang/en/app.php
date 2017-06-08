@@ -13,4 +13,6 @@ return [
     'view' => 'View',
     'edit' => 'Edit',
     'delete' => 'Delete',
+    'activate' => 'Activate',
+    'disable' => 'Disable',
 ];
