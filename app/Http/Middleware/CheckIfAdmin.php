@@ -18,6 +18,7 @@ class CheckIfAdmin
         if(in_array("super-admin", auth()->user()->rolesConnections()->pluck('roles_id')->toArray()))
         return $next($request);
 
+
         return redirect('home');
 
     }

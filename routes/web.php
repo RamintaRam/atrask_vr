@@ -21,7 +21,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware'=>['auth', 'check if super-admin']], function () {
     Route::get('/', function () {
         return view('admin.welcome_admin');
     });
