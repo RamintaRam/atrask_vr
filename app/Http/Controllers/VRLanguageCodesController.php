@@ -15,6 +15,7 @@ class VRLanguageCodesController extends Controller {
 	{
         $dataFromModel = new VRLanguageCodes();
 		$config['list'] = VRLanguageCodes::get()->toArray();
+		$config['callToAction'] = 'app.language.edit';
         //$configuration['tableName'] = $dataFromModel->getTableName();
 //		dd($config);
 

@@ -4,7 +4,7 @@ return [
 
 
     'language' => 'Kalbos',
-    'menu' => 'Menu',
+    'menu' => 'Meniu',
     'pages' => "Puslapiai",
     'orders' => "Užsakymai",
     'categories' => "Kategorijos",
