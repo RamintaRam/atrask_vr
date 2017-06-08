@@ -11,7 +11,4 @@ class VRRoles extends CoreModel
 
     protected $fillable = ['id', 'name', 'comment'];
 
-    public static function find($id)
-    {
-    }
 }

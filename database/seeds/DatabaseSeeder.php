@@ -12,5 +12,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
          $this->call(VRRolesSeeder::class);
+         $this->call(VRLanguagesSeeder::class);
     }
 }
