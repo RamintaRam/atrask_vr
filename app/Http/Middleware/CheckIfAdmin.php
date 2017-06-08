@@ -15,7 +15,9 @@ class CheckIfAdmin
      */
     public function handle($request, Closure $next)
     {
-        if(in_array("super-admin", auth()->user()->rolesConnections()->pluck('roles_id')->toArray()))
+//        dd(auth()->user()->rolesConnections());
+
+        if(in_array("super-admin", auth()->user()->connection()->pluck('id')->toArray()))
         return $next($request);
 
 
