@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class CheckIfAdmin
+class CheckIfUser
 {
     /**
      * Handle an incoming request.
@@ -15,11 +15,6 @@ class CheckIfAdmin
      */
     public function handle($request, Closure $next)
     {
-        if(in_array("super-admin", auth()->user()->rolesConnections()->pluck('roles_id')->toArray()))
         return $next($request);
-
-
-        return redirect('home');
-
     }
 }
