@@ -38,8 +38,79 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth', 'check if super-admin'
         });
     });
 
+    Route::group(['prefix' => 'languages'], function () {
+        Route::get('/', ['as' => 'app.language.index','uses' => 'VRLanguageCodesController@adminIndex']);
+        Route::get('/create', ['as' => 'app.language.create','uses' => 'VRLanguageCodesController@adminCreate']);
+        Route::post('/create', ['as' => 'app.language.store', 'uses' => 'VRLanguageCodesController@adminStore']);
+        Route::group(['prefix' => '{id}'], function () {
+            Route::get('/edit', ['as' => 'app.language.edit', 'uses' => 'VRLanguageCodesController@adminEdit']);
+            Route::post('/edit', ['as' => 'app.language.update', 'uses' => 'VRLanguageCodesController@adminUpdate']);
+            Route::get('/', ['as' => 'app.language.show', 'uses' => 'VRLanguageCodesController@adminShow']);
+            Route::delete('/', ['as' => 'app.language.delete', 'uses' => 'VRLanguageCodesController@adminDestroy']);
+        });
+    });
 
 
+    Route::group(['prefix' => 'menu'], function () {
+        Route::get('/', ['as' => 'app.menu.index','uses' => 'VRMenuController@adminIndex']);
+        Route::get('/create', ['as' => 'app.menu.create','uses' => 'VRMenuController@adminCreate']);
+        Route::post('/create', ['as' => 'app.menu.store', 'uses' => 'VRMenuController@adminStore']);
+        Route::group(['prefix' => '{id}'], function () {
+            Route::get('/edit', ['as' => 'app.menu.edit', 'uses' => 'VRMenuController@adminEdit']);
+            Route::post('/edit', ['as' => 'app.menu.update', 'uses' => 'VRMenuController@adminUpdate']);
+            Route::get('/', ['as' => 'app.menu.show', 'uses' => 'VRMenuController@adminShow']);
+            Route::delete('/', ['as' => 'app.menu.delete', 'uses' => 'VRMenuController@adminDestroy']);
+        });
+    });
+
+    Route::group(['prefix' => 'pages'], function () {
+        Route::get('/', ['as' => 'app.pages.index','uses' => 'VRPagesController@adminIndex']);
+        Route::get('/create', ['as' => 'app.pages.create','uses' => 'VRPagesController@adminCreate']);
+        Route::post('/create', ['as' => 'app.pages.store', 'uses' => 'VRPagesController@adminStore']);
+        Route::group(['prefix' => '{id}'], function () {
+            Route::get('/edit', ['as' => 'app.pages.edit', 'uses' => 'VRPagesController@adminEdit']);
+            Route::post('/edit', ['as' => 'app.pages.update', 'uses' => 'VRPagesController@adminUpdate']);
+            Route::get('/', ['as' => 'app.pages.show', 'uses' => 'VRPagesController@adminShow']);
+            Route::delete('/', ['as' => 'app.pages.delete', 'uses' => 'VRPagesController@adminDestroy']);
+        });
+    });
+
+
+    Route::group(['prefix' => 'orders'], function () {
+        Route::get('/', ['as' => 'app.orders.index','uses' => 'VROrderController@adminIndex']);
+        Route::get('/create', ['as' => 'app.orders.create','uses' => 'VROrderController@adminCreate']);
+        Route::post('/create', ['as' => 'app.orders.store', 'uses' => 'VROrderController@adminStore']);
+        Route::group(['prefix' => '{id}'], function () {
+            Route::get('/edit', ['as' => 'app.orders.edit', 'uses' => 'VROrderController@adminEdit']);
+            Route::post('/edit', ['as' => 'app.orders.update', 'uses' => 'VROrderController@adminUpdate']);
+            Route::get('/', ['as' => 'app.orders.show', 'uses' => 'VROrderController@adminShow']);
+            Route::delete('/', ['as' => 'app.orders.delete', 'uses' => 'VROrderController@adminDestroy']);
+        });
+    });
+
+    Route::group(['prefix' => 'users'], function () {
+        Route::get('/', ['as' => 'app.users.index','uses' => 'VRUsersController@adminIndex']);
+        Route::get('/create', ['as' => 'app.users.create','uses' => 'VRUsersController@adminCreate']);
+        Route::post('/create', ['as' => 'app.users.store', 'uses' => 'VRUsersController@adminStore']);
+        Route::group(['prefix' => '{id}'], function () {
+            Route::get('/edit', ['as' => 'app.users.edit', 'uses' => 'VRUsersController@adminEdit']);
+            Route::post('/edit', ['as' => 'app.users.update', 'uses' => 'VRUsersController@adminUpdate']);
+            Route::get('/', ['as' => 'app.users.show', 'uses' => 'VRUsersController@adminShow']);
+            Route::delete('/', ['as' => 'app.users.delete', 'uses' => 'VRUsersController@adminDestroy']);
+        });
+    });
+
+    Route::group(['prefix' => 'pages_categories'], function () {
+        Route::get('/', ['as' => 'app.categories.index','uses' => 'VRCategoriesController@adminIndex']);
+        Route::get('/create', ['as' => 'app.categories.create','uses' => 'VRCategoriesController@adminCreate']);
+        Route::post('/create', ['as' => 'app.categories.store', 'uses' => 'VRCategoriesController@adminStore']);
+        Route::group(['prefix' => '{id}'], function () {
+            Route::get('/edit', ['as' => 'app.categories.edit', 'uses' => 'VRCategoriesController@adminEdit']);
+            Route::post('/edit', ['as' => 'app.categories.update', 'uses' => 'VRCategoriesController@adminUpdate']);
+            Route::get('/', ['as' => 'app.categories.show', 'uses' => 'VRCategoriesController@adminShow']);
+            Route::delete('/', ['as' => 'app.categories.delete', 'uses' => 'VRCategoriesController@adminDestroy']);
+        });
+    });
 
 });
 
