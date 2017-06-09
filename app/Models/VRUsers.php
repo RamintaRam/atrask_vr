@@ -15,6 +15,8 @@ class VRUsers extends Authenticatable
 
     use SoftDeletes;
 
+    public $incrementing = false;
+
     protected $table = 'vr_users';
 
     protected $fillable = ['id', 'name', 'email', 'password', 'phone', 'remember_token'];
