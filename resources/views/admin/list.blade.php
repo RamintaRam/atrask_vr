@@ -23,13 +23,13 @@
                                 <td> @if($key == 'is_active')
                                         @if($value == 1)
                                             <a class="btn btn-danger btn-sm" onclick="
-                                                    enableDisable('{{route($callToAction, $record['id'])}}', 0)" href="#">{{trans('app.disable')}}</a>
-                                            <a class="btn btn-primary btn-sm" onclick="enableDisable('app.language.edit', 1)" style="display: none"
+                                                    toggleActive('{{route($callToAction, $record['id'])}}', 0)" href="#">{{trans('app.disable')}}</a>
+                                            <a class="btn btn-primary btn-sm" onclick="toggleActive('app.language.edit', 1)" style="display: none"
                                                href="#">{{trans('app.activate')}}</a>
                                         @else
-                                            <a class="btn btn-danger btn-sm" onclick="enableDisable('app.language.edit', 0)" style="display: none"
+                                            <a class="btn btn-danger btn-sm" onclick="toggleActive('app.language.edit', 0)" style="display: none"
                                                href="#">{{trans('app.disable')}}</a>
-                                            <a class="btn btn-primary btn-sm" onclick="enableDisable('app.language.edit', 1)" href="#">{{trans('app.activate')}}</a>
+                                            <a class="btn btn-primary btn-sm" onclick="toggleActive('app.language.edit', 1)" href="#">{{trans('app.activate')}}</a>
                                         @endif
                                     @else
                                         {{$value}}
@@ -61,7 +61,7 @@
 @section('scripts')
 
     <script>
-        function enableDisable(URL, value)
+        function toggleActive(URL, value)
         {
             alert('Hello')
         }
