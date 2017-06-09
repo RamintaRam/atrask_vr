@@ -23,33 +23,32 @@
                                 <td> @if($key == 'is_active')
                                         @if($value == 1)
                                             <a class="btn btn-danger btn-sm" onclick="
-                                                    toggleActive('{{route($callToAction, $record['id'])}}', 0)" href="#">{{trans('app.disable')}}</a>
-                                            <a class="btn btn-primary btn-sm" onclick="toggleActive('app.language.edit', 1)" style="display: none"
+                                                    toggleActive('{{route($callToAction, $record['id'])}}', 0)"
+                                               href="#">{{trans('app.disable')}}</a>
+                                            <a class="btn btn-primary btn-sm"
+                                               onclick="toggleActive('{{route($callToAction, $record['id'])}}', 1)"
+                                               style="display: none"
                                                href="#">{{trans('app.activate')}}</a>
                                         @else
-                                            <a class="btn btn-danger btn-sm" onclick="toggleActive('app.language.edit', 0)" style="display: none"
+                                            <a class="btn btn-danger btn-sm"
+                                               onclick="toggleActive('{{route($callToAction, $record['id'])}}', 0)"
+                                               style="display: none"
                                                href="#">{{trans('app.disable')}}</a>
-                                            <a class="btn btn-primary btn-sm" onclick="toggleActive('app.language.edit', 1)" href="#">{{trans('app.activate')}}</a>
+                                            <a class="btn btn-primary btn-sm"
+                                               onclick="toggleActive('{{route($callToAction, $record['id'])}}', 1)"
+                                               href="#">{{trans('app.activate')}}</a>
                                         @endif
                                     @else
                                         {{$value}}
                                     @endif
                                 </td>
-
+                            @endforeach
+                        </tr>
                     @endforeach
-                  {{--<td>{{trans('app.view')}}</td>--}}
-                  {{--<td>{{trans('app.edit')}}</td>--}}
-                  {{--<td>{{trans('app.delete')}}</td>--}}
-
-              {{--<td><a class="btn btn-primary btn-sm" href="{{route('app.' . $tableName . '.show', $record['id'])}}">{{trans('app.view')}}</a></td>--}}
-              {{--<td><a class="btn btn-success btn-sm" href="{{route('app.' . $tableName . '.edit', $record['id'])}}">{{trans('app.edit')}}</a></td>--}}
-              {{--<td><a id="del" onclick="deleteItem('{{route('app.' . $tableName . '.delete', $record['id'])}}')" class="btn btn-danger btn-sm" >{{trans('app.delete')}}</a></td>--}}
-              {{--</tr>--}}
-        @endforeach
-            </tbody>
-        </table>
+                    </tbody>
+                </table>
             @else
-        <p>No data</p>
+                <p>No data</p>
             @endif
 
 
@@ -61,10 +60,24 @@
 @section('scripts')
 
     <script>
-        function toggleActive(URL, value)
-        {
-            alert('Hello')
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            }
+        });
+
+        function toggleActive(URL, value) {
+            $.ajax({
+                url: URL,
+                type: 'POST',
+                data: {is_active: value},
+                success: function (responce) {
+                    console.log(responce)
+                }
+            });
         }
+
 
 
     </script>

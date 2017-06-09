@@ -15,7 +15,7 @@ class VRLanguageCodesController extends Controller {
 	{
         $dataFromModel = new VRLanguageCodes();
 		$config['list'] = VRLanguageCodes::get()->toArray();
-		$config['callToAction'] = 'app.language.edit';
+		$config['callToAction'] = 'app.language.update';
         //$configuration['tableName'] = $dataFromModel->getTableName();
 //		dd($config);
 
@@ -63,9 +63,10 @@ class VRLanguageCodesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function adminEdit($id)
 	{
-		//
+
+
 	}
 
 	/**
@@ -75,10 +76,25 @@ class VRLanguageCodesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
-	{
-		//
-	}
+	public function adminUpdate($id)
+    {
+        $record = VRLanguageCodes::find($id);
+
+        $data = request()->all();
+        $record->update($data);
+
+
+// PVZ:       $record = VRLanguageCodes::findOrFail($id);
+
+//    PAVYZDYS    $record = VRLanguageCodes::find($id);
+//
+//        if ($record)
+//        {
+//            $data = request()->all();
+//            $record->update($data);
+//        }
+        return $record;
+    }
 
 	/**
 	 * Remove the specified resource from storage.
