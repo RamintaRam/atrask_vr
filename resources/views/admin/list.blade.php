@@ -18,14 +18,14 @@
                     </thead>
                     <tbody>
                     @foreach($list as $key => $record)
-                        <tr>  {{--<tr> {{$record['id']}}"--}}
+                        <tr id="{{$record['id']}}">
                             @foreach($record as $key =>$value)
                                 <td> @if($key == 'is_active')
                                         @if($value == 1)
                                             <a class="btn btn-danger btn-sm" onclick="
                                                     toggleActive('{{route($callToAction, $record['id'])}}', 0)"
                                                href="#">{{trans('app.disable')}}</a>
-                                            <a class="btn btn-primary btn-sm"
+                                            <a class="btn btn-success btn-sm"
                                                onclick="toggleActive('{{route($callToAction, $record['id'])}}', 1)"
                                                style="display: none"
                                                href="#">{{trans('app.activate')}}</a>
@@ -34,7 +34,7 @@
                                                onclick="toggleActive('{{route($callToAction, $record['id'])}}', 0)"
                                                style="display: none"
                                                href="#">{{trans('app.disable')}}</a>
-                                            <a class="btn btn-primary btn-sm"
+                                            <a class="btn btn-success btn-sm"
                                                onclick="toggleActive('{{route($callToAction, $record['id'])}}', 1)"
                                                href="#">{{trans('app.activate')}}</a>
                                         @endif
@@ -72,8 +72,35 @@
                 url: URL,
                 type: 'POST',
                 data: {is_active: value},
-                success: function (responce) {
-                    console.log(responce)
+                success: function (response) {
+
+                    var dangerButton = $('#' + response.id).find('.btn-danger');
+                    var successButton = $('#' + response.id).find('.btn-success');
+
+                   // console.log(dangerButton, successButton)
+
+/*                   console.log($('#' + response.id).
+                   find('btn btn-danger btn-sm').
+                    find('btn btn-primary btn-sm'))*/
+
+
+//                   console.log( $('#' + response.id).hide())
+
+
+                    console.log(response.is_active);
+
+                    if(response.is_active === '1')
+                    {
+                        successButton.hide();
+                        dangerButton.show()
+                    } else
+                    {
+                        successButton.show();
+                        dangerButton.hide()
+                    }
+
+
+
                 }
             });
         }
