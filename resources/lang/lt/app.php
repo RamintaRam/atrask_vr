@@ -15,4 +15,6 @@ return [
     'delete' => 'Ištrinti',
     'activate' => 'Aktyvuoti',
     'disable' => 'Išjungti',
+    'order' => "Užsakymai",
+    'language_codes' => 'Kalbos',
 ];

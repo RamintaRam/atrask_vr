@@ -5,7 +5,7 @@
     <div id="list">
 
         <div class="container">
-            <div><h2>{{trans('app.language')}}</h2></div>
+            <div><h2>{{trans('app.' . $tableName)}}</h2></div>
             @if(sizeof($list)>0)
                 <table class="table">
                     <thead>

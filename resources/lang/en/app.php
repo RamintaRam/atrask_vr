@@ -15,4 +15,7 @@ return [
     'delete' => 'Delete',
     'activate' => 'Activate',
     'disable' => 'Disable',
+    'language_codes' => 'Languages',
+    'order' => "Orders",
+
 ];
