@@ -17,4 +17,6 @@ return [
     'disable' => 'Išjungti',
     'order' => "Užsakymai",
     'language_codes' => 'Kalbos',
+    'createNew' => "Sukurti naują įrašą",
+    'noData' => "Duomenų nėra",
 ];

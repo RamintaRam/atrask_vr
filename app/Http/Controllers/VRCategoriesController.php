@@ -16,6 +16,8 @@ class VRCategoriesController extends Controller {
         $dataFromModel = new VRCategories();
         $config['tableName'] = $dataFromModel->getTableName();
         $config['list'] = VRCategories::get()->toArray();
+        $config['new'] = 'app.categories.create';
+
         return view('admin.list', $config);
 	}
 
@@ -25,9 +27,12 @@ class VRCategoriesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function adminCreate()
 	{
-		//
+//        $dataFromModel = new VRCategories();
+//        $config['fields'] = $dataFromModel->getFillable();
+//        $configuration['tableName'] = $dataFromModel->getTableName();
+
 	}
 
 	/**
@@ -38,7 +43,10 @@ class VRCategoriesController extends Controller {
 	 */
 	public function store()
 	{
-		//
+        $data = request()->all();
+        $dataFromModel = new VRCategories();
+        $configuration['fields'] = $dataFromModel->getFillable();
+        $configuration['tableName'] = $dataFromModel->getTableName();
 	}
 
 	/**

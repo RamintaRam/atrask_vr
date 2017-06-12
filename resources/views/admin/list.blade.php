@@ -6,6 +6,10 @@
 
         <div class="container">
             <div><h2>{{trans('app.' . $tableName)}}</h2></div>
+            @if(isset($new))
+                <div><a class="btn btn-success btn-sm" href="{{route($new)}}">{{trans('app.createNew')}}</a></div>
+            @endif
+
             @if(sizeof($list)>0)
                 <table class="table">
                     <thead>
@@ -48,7 +52,7 @@
                     </tbody>
                 </table>
             @else
-                <p>No data</p>
+                <p>{{trans('app.noData')}} </p>
             @endif
 
 
