@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\VRReservations;
 use Illuminate\Routing\Controller;
 
 class VRReservationsController extends Controller {
@@ -12,7 +13,12 @@ class VRReservationsController extends Controller {
 	 */
 	public function index()
 	{
-		//
+        $dataFromModel = new VRReservations();
+        $config['tableName'] = $dataFromModel->getTableName();
+        $config['list'] = VRReservations::get()->toArray();
+        $config['callToAction'] = 'app.users.update';
+
+        return view('admin.list', $config);
 	}
 
 	/**

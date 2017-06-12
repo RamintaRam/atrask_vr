@@ -2,10 +2,12 @@
 
 namespace App;
 
+use App\Traits\TableNameTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class VRLanguageCodes extends Model
 {
+    use TableNameTrait;
     public $incrementing = false;
 
     protected $table = 'vr_language_codes';

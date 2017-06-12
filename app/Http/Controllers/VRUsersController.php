@@ -14,11 +14,10 @@ class VRUsersController extends Controller {
 	 */
 	public function adminIndex()
 	{
-
+        $dataFromModel = new VRUsers();
+        $config['tableName'] = $dataFromModel->getTableName();
         $config['list'] = VRUsers::get()->toArray();
         $config['callToAction'] = 'app.users.update';
-        //$configuration['tableName'] = $dataFromModel->getTableName();
-//		dd($config);
 
         return view('admin.list', $config);
 

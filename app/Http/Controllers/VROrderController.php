@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\VROrder;
 use Illuminate\Routing\Controller;
 
 class VROrderController extends Controller {
@@ -12,7 +13,12 @@ class VROrderController extends Controller {
 	 */
 	public function adminIndex()
 	{
-        return view('admin.list');
+        $dataFromModel = new VROrder();
+        $config['tableName'] = $dataFromModel->getTableName();
+        $config['list'] = VROrder::get()->toArray();
+        $config['callToAction'] = 'app.users.update';
+
+        return view('admin.list', $config);
 	}
 
 	/**

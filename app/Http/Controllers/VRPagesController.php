@@ -12,11 +12,13 @@ class VRPagesController extends Controller {
 	 * @return Response
 	 */
 	public function adminIndex()
-	{
+	{   $dataFromModel = new VRPages();
+        $config['tableName'] = $dataFromModel->getTableName();
         $config['list'] = VRPages::get()->toArray();
         $config['callToAction'] = 'app.users.update';
 
         return view('admin.list', $config);
+
 	}
 
 	/**

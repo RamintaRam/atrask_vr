@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\VRMenu;
 use Illuminate\Routing\Controller;
 
 class VRMenuController extends Controller {
@@ -12,7 +13,14 @@ class VRMenuController extends Controller {
 	 */
 	public function adminIndex()
 	{
-        return view('admin.list');
+
+        $dataFromModel = new VRMenu();
+        $config['tableName'] = $dataFromModel->getTableName();
+        $config['list'] = VRMenu::get()->toArray();
+        $config['callToAction'] = 'app.menu.update';
+
+        return view('admin.list', $config);
+
 	}
 
 	/**

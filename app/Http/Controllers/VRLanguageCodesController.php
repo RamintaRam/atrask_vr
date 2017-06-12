@@ -14,9 +14,10 @@ class VRLanguageCodesController extends Controller {
 	public function adminIndex()
 	{
         $dataFromModel = new VRLanguageCodes();
+        $config['tableName'] = $dataFromModel->getTableName();
 		$config['list'] = VRLanguageCodes::get()->toArray();
 		$config['callToAction'] = 'app.language.update';
-        //$configuration['tableName'] = $dataFromModel->getTableName();
+//
 //		dd($config);
 
 	    return view('admin.list', $config);
@@ -78,6 +79,8 @@ class VRLanguageCodesController extends Controller {
 	 */
 	public function adminUpdate($id)
     {
+
+
         $record = VRLanguageCodes::find($id);
 
         $data = request()->all();
