@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\CoreModel;
 
+use App\Traits\TableNameTrait;
 use App\VRConnectionsUsersRoles;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
@@ -11,6 +12,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class VRUsers extends Authenticatable
 {
+    use TableNameTrait;
+
     use Notifiable;
 
     use SoftDeletes;
