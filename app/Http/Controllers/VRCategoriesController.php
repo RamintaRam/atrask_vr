@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\VRCategories;
+use App\VRLanguageCodes;
 use Illuminate\Routing\Controller;
 
 class VRCategoriesController extends Controller {
@@ -24,18 +25,34 @@ class VRCategoriesController extends Controller {
 	/**
 	 * Show the form for creating a new resource.
 	 * GET /vrcategories/create
-	 *
-	 * @return Response
-	 */
-	public function adminCreate()
-	{
-//        $dataFromModel = new VRCategories();
-//        $config['fields'] = $dataFromModel->getFillable();
-//        $configuration['tableName'] = $dataFromModel->getTableName();
+     *
+     * @return Response
+     */
+    public function adminCreate()
+    {
+        $data = request()->all();
+        $dataFromModel = new VRCategories();
+        $config['tableName'] = $dataFromModel->getTableName();
 
-	}
 
-	/**
+        $config['fields'][] = [
+            "type" => "dropDown",
+            "key" => "language_code",
+            "option" => getActiveLanguages(),
+        ];
+        $config['fields'][]=
+            [
+                "type" => "singleLine",
+                "key" => "name",
+            ];
+
+
+
+
+        return view('admin.create-form', $config);
+    }
+
+    /**
 	 * Store a newly created resource in storage.
 	 * POST /vrcategories
 	 *
@@ -43,10 +60,11 @@ class VRCategoriesController extends Controller {
 	 */
 	public function store()
 	{
-        $data = request()->all();
         $dataFromModel = new VRCategories();
-        $configuration['fields'] = $dataFromModel->getFillable();
-        $configuration['tableName'] = $dataFromModel->getTableName();
+        $config['tableName'] = $dataFromModel->getTableName();
+
+
+
 	}
 
 	/**
