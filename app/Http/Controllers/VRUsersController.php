@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+
+use App\Models\VRUsers;
 use Illuminate\Routing\Controller;
 
 class VRUsersController extends Controller {
@@ -12,7 +14,14 @@ class VRUsersController extends Controller {
 	 */
 	public function adminIndex()
 	{
-        return view('admin.list');
+
+        $config['list'] = VRUsers::get()->toArray();
+        $config['callToAction'] = 'app.users.update';
+        //$configuration['tableName'] = $dataFromModel->getTableName();
+//		dd($config);
+
+        return view('admin.list', $config);
+
 	}
 
 	/**
@@ -70,7 +79,12 @@ class VRUsersController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+        $record = VRUsers::find($id);
+
+        $data = request()->all();
+        $record->update($data);
+
+        return $record;
 	}
 
 	/**

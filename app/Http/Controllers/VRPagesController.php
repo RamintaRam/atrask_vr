@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\VRPages;
 use Illuminate\Routing\Controller;
 
 class VRPagesController extends Controller {
@@ -12,7 +13,10 @@ class VRPagesController extends Controller {
 	 */
 	public function adminIndex()
 	{
-        return view('admin.list');
+        $config['list'] = VRPages::get()->toArray();
+        $config['callToAction'] = 'app.users.update';
+
+        return view('admin.list', $config);
 	}
 
 	/**
@@ -70,7 +74,12 @@ class VRPagesController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+        $record = VRPages::find($id);
+
+        $data = request()->all();
+        $record->update($data);
+
+        return $record;
 	}
 
 	/**

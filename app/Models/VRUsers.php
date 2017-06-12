@@ -19,7 +19,7 @@ class VRUsers extends Authenticatable
 
     protected $table = 'vr_users';
 
-    protected $fillable = ['id', 'name', 'email', 'password', 'phone', 'remember_token'];
+    protected $fillable = ['id', 'name', 'email', 'password', 'phone'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -27,7 +27,9 @@ class VRUsers extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password'
+        'password',
+        'remember_token',
+        'deleted_at',
     ];
 
 
