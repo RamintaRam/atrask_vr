@@ -16,7 +16,7 @@ class VRCategoriesController extends Controller {
         $dataFromModel = new VRCategories();
         $config['tableName'] = $dataFromModel->getTableName();
         $config['list'] = VRCategories::get()->toArray();
-        return view('admin.list');
+        return view('admin.list', $config);
 	}
 
 	/**
