@@ -163,6 +163,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Evercode1\TraitMaker\TraitMakerServiceProvider::class,
 
         /*
          * Package Service Providers...
