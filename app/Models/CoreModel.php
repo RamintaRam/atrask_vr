@@ -13,7 +13,10 @@ class CoreModel extends Model
     use Notifiable;
 
     use SoftDeletes;
+
     use TableNameTrait;
+
+//    protected $hidden = ['deleted_at'];
 
     public $incrementing = false;
 }
