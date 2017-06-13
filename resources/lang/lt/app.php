@@ -21,6 +21,8 @@ return [
     'noData' => "Duomenų nėra",
     'name' => "Pavadinimas",
     'language_code' => 'Kalba',
-     'create' => 'Sukurti',
+    'create' => 'Sukurti',
+    'url' => 'URL',
+    'newWindow' => 'Atidaryti naujame lange',
 
 ];

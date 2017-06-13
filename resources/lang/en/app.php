@@ -22,5 +22,7 @@ return [
     'Name' => "name",
     'language_code' => 'Language',
     'create' => 'Create',
+    'url' => 'URL',
+    'newWindow' => 'Open in new Window',
 
 ];
