@@ -17,6 +17,9 @@ class VRMenuController extends Controller {
         $dataFromModel = new VRMenu();
         $config['tableName'] = $dataFromModel->getTableName();
         $config['list'] = VRMenu::get()->toArray();
+        $config['new'] = 'app.menu.create';
+        $config['edit'] = 'app.menu.edit';
+        $config['delete'] = 'app.menu.delete';
 
 
         return view('admin.list', $config);
@@ -29,7 +32,7 @@ class VRMenuController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function adminCreate()
 	{
         $config = $this->getFormData();
 
@@ -41,7 +44,7 @@ class VRMenuController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function adminStore()
 	{
 		//
 	}
@@ -53,7 +56,7 @@ class VRMenuController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function adminShow($id)
 	{
 		//
 	}
@@ -65,7 +68,7 @@ class VRMenuController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function adminEdit($id)
 	{
 		//
 	}
@@ -77,7 +80,7 @@ class VRMenuController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function adminUpdate($id)
 	{
 		//
 	}
@@ -89,7 +92,7 @@ class VRMenuController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function adminDestroy($id)
 	{
 		//
 	}
