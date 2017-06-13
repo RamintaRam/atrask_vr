@@ -17,7 +17,7 @@ return [
     'disable' => 'Disable',
     'language_codes' => 'Languages',
     'order' => "Orders",
-    'createNew' => "Create new record: ",
+    'createNew' => "Create new record",
     'noData' => "No data",
     'Name' => "name",
     'language_code' => 'Language',

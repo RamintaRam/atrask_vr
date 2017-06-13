@@ -31,7 +31,7 @@ class VRMenuController extends Controller {
 	 */
 	public function create()
 	{
-		//
+
 	}
 
 	/**

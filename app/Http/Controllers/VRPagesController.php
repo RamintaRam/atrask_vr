@@ -29,7 +29,7 @@ class VRPagesController extends Controller {
 	 */
 	public function create()
 	{
-		//
+
 	}
 
 	/**

@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\VRCategories;
+use App\VRCategoriesTranslations;
 use App\VRLanguageCodes;
 use Illuminate\Routing\Controller;
 
@@ -58,17 +59,35 @@ class VRCategoriesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
-	{
-        $dataFromModel = new VRCategories();
-        $config['tableName'] = $dataFromModel->getTableName();
+    public function adminStore()
+    {
+        $data = request()->all();
+/*
+ * VIENAS BUDAS:
+        $record = VRCategories::create();
+        VRCategoriesTranslations::create([
+            'record_id' => $record->id,
+            'language_code' => $data['language_code'],
+            'name' => $data['name'],
+        ]);*/
+
+//ANTRAS BUDAS:
+        $record = VRCategories::create();
+        $data['record_id'] = $record->id;
+        VRCategoriesTranslations::create($data);
 
 
+//TRECIAS BUDAS:
+//        $data['record_id'] = (VRCategories::create())->id;
+//        VRCategoriesTranslations::create($data);
 
-	}
 
-	/**
-	 * Display the specified resource.
+        return redirect()->route('app.categories.edit', [$record->id]);
+
+    }
+
+    /**
+     * Display the specified resource.
 	 * GET /vrcategories/{id}
 	 *
 	 * @param  int  $id
@@ -86,7 +105,7 @@ class VRCategoriesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function adminEdit($id)
 	{
 		//
 	}

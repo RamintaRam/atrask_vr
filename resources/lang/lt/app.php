@@ -17,7 +17,7 @@ return [
     'disable' => 'Išjungti',
     'order' => "Užsakymai",
     'language_codes' => 'Kalbos',
-    'createNew' => "Sukurti naują įrašą: ",
+    'createNew' => "Sukurti naują įrašą",
     'noData' => "Duomenų nėra",
     'name' => "Pavadinimas",
     'language_code' => 'Kalba',
