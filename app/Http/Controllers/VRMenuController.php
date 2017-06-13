@@ -17,7 +17,7 @@ class VRMenuController extends Controller {
         $dataFromModel = new VRMenu();
         $config['tableName'] = $dataFromModel->getTableName();
         $config['list'] = VRMenu::get()->toArray();
-        $config['callToAction'] = 'app.menu.update';
+
 
         return view('admin.list', $config);
 
@@ -31,6 +31,7 @@ class VRMenuController extends Controller {
 	 */
 	public function create()
 	{
+        $config = $this->getFormData();
 
 	}
 
@@ -92,5 +93,37 @@ class VRMenuController extends Controller {
 	{
 		//
 	}
+
+
+    public function getFormData()
+    {
+        $config['fields'][] = [
+            "type" => "dropDown",
+            "key" => "language_code",
+            "option" => getActiveLanguages(),
+        ];
+        $config['fields'][] =
+            [
+                "type" => "singleLine",
+                "key" => "name",
+            ];
+
+        $config['fields'][] =
+            [
+                "type" => "singleLine",
+                "key" => "url",
+            ];
+
+        $config['fields'][] =
+            [
+                "type" => "checkBox",
+                "key" => "newWindow",
+                "option" => [
+
+                ]
+            ];
+
+        return $config;
+    }
 
 }
