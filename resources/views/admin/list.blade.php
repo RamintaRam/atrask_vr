@@ -24,7 +24,8 @@
                     @foreach($list as $key => $record)
                         <tr id="{{$record['id']}}">
                             @foreach($record as $key =>$value)
-                                <td> @if($key == 'is_active')
+                                <td>
+                                    @if($key == 'is_active')
                                         @if($value == 1)
                                             <a class="btn btn-danger btn-sm" onclick="
                                                     toggleActive('{{route($callToAction, $record['id'])}}', 0)"
@@ -42,6 +43,14 @@
                                                onclick="toggleActive('{{route($callToAction, $record['id'])}}', 1)"
                                                href="#">{{trans('app.activate')}}</a>
                                         @endif
+                                    @elseif($key == 'translation')
+
+                                        @if(isset($value['name']))
+                                            {{$value['name'] . ' ' . $value['language_code']}}
+                                        @else
+                                            -
+                                        @endif
+
                                     @else
                                         {{$value}}
                                     @endif
@@ -56,8 +65,8 @@
             @endif
 
 
-</div>
-</div>
+        </div>
+    </div>
 
 @endsection
 
@@ -81,11 +90,11 @@
                     var dangerButton = $('#' + response.id).find('.btn-danger');
                     var successButton = $('#' + response.id).find('.btn-success');
 
-                   // console.log(dangerButton, successButton)
+                    // console.log(dangerButton, successButton)
 
-/*                   console.log($('#' + response.id).
-                   find('btn btn-danger btn-sm').
-                    find('btn btn-primary btn-sm'))*/
+                    /*                   console.log($('#' + response.id).
+                     find('btn btn-danger btn-sm').
+                     find('btn btn-primary btn-sm'))*/
 
 
 //                   console.log( $('#' + response.id).hide())
@@ -93,16 +102,13 @@
 
                     console.log(response.is_active);
 
-                    if(response.is_active === '1')
-                    {
+                    if (response.is_active === '1') {
                         successButton.hide();
                         dangerButton.show()
-                    } else
-                    {
+                    } else {
                         successButton.show();
                         dangerButton.hide()
                     }
-
 
 
                 }
@@ -110,7 +116,6 @@
         }
 
 
-
     </script>
 
-    @endsection
+@endsection
