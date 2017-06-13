@@ -16,10 +16,14 @@ class VRCategoriesController extends Controller
      */
     public function adminIndex()
     {
+        //dd(VRCategories::get()->toArray());
+
         $dataFromModel = new VRCategories();
         $config['tableName'] = $dataFromModel->getTableName();
         $config['list'] = VRCategories::get()->toArray();
         $config['new'] = 'app.categories.create';
+        $config['edit'] = 'app.categories.edit';
+        $config['delete'] = 'app.categories.delete';
 
         return view('admin.list', $config);
     }
@@ -35,7 +39,6 @@ class VRCategoriesController extends Controller
         $config = $this->getFormData();
         $dataFromModel = new VRCategories();
         $config['tableName'] = $dataFromModel->getTableName();
-        $config['list'] = VRCategories::get()->toArray();
         $config['route'] = route('app.categories.create');
 
         //getFormData() funkcija apraryta apacioje.
@@ -83,7 +86,7 @@ class VRCategoriesController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function show($id)
+    public function adminShow($id)
     {
         //
     }
@@ -103,6 +106,7 @@ class VRCategoriesController extends Controller
         $config['route'] = route('app.categories.edit', $id);
         $record = VRCategories::find($id)->toArray();
 
+
         return view('admin.create-form', $config);
     }
 
@@ -113,9 +117,9 @@ class VRCategoriesController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function update($id)
+    public function adminUpdate($id)
     {
-        //
+
     }
 
     /**
@@ -125,9 +129,13 @@ class VRCategoriesController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function destroy($id)
+    public function adminDestroy($id)
     {
-        //
+        VRCategoriesTranslations::destroy(VRCategoriesTranslations::where('record_id', $id)->pluck('id')->toArray());
+
+        VRCategories::destroy($id);
+
+        return json_encode(["success" => true, "id" => $id]);
     }
 
 
@@ -143,6 +151,8 @@ class VRCategoriesController extends Controller
                 "type" => "singleLine",
                 "key" => "name",
             ];
+
+
 
         return $config;
     }

@@ -17,7 +17,7 @@
                         @foreach($list[0] as $key => $value)
                             <th>{{$key}}</th>
                         @endforeach
-
+                        <th></th><th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -56,6 +56,14 @@
                                     @endif
                                 </td>
                             @endforeach
+                            @if(isset ($edit))
+                                <td><a class="btn btn-primary btn-sm" href="{{route($edit, $record['id'])}}"><i
+                                                class="fa fa-pencil fa-sm" aria-hidden="true"></i> Edit</a></td>
+                            @endif
+                            @if(isset ($delete))
+                                <td><a id="del" onclick="deleteItem('{{route($delete, $record['id'])}}')"
+                                       class="btn btn-danger btn-sm"><i class="fa fa-trash-o fa-sm"></i> Delete</a></td>
+                            @endif
                         </tr>
                     @endforeach
                     </tbody>
@@ -111,6 +119,22 @@
                     }
 
 
+                }
+            });
+        }
+
+
+        function deleteItem(route) {
+            $.ajax({
+                url: route,
+                type: 'DELETE',
+                data: {},
+                dataType: 'json',
+                success: function (r) {
+                    $("#" + r.id).remove();
+                },
+                error: function () {
+                    alert('error');
                 }
             });
         }
