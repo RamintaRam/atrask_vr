@@ -34,7 +34,14 @@ class VRMenuController extends Controller {
 	 */
 	public function adminCreate()
 	{
-        $config = $this->getFormData();
+             $config = $this->getFormData();
+        $dataFromModel = new VRMenu();
+        $config['tableName'] = $dataFromModel->getTableName();
+       $config['route'] = route('app.menu.create');
+
+        //getFormData() funkcija apraryta apacioje.
+
+        return view('admin.create-form', $config);
 
 	}
 
