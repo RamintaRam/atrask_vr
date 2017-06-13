@@ -5,7 +5,7 @@
     <div id="list">
 
         <div class="container">
-            <div><h2>{{trans('app.' . $tableName)}}</h2></div>
+            <div><h2>{{trans('app.' . $tableName)}}</h2></div><br>
             @if(isset($new))
                 <div><a class="btn btn-success btn-sm" href="{{route($new)}}">{{trans('app.createNew')}}</a></div>
             @endif
@@ -69,7 +69,7 @@
                     </tbody>
                 </table>
             @else
-                <p>{{trans('app.noData')}} </p>
+                <p><h4 style="font-style: italic">{{trans('app.noData')}} </h4></p>
             @endif
 
 
