@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
 
-class VRCategoriesTranslations extends Model
+class VRCategoriesTranslations extends CoreModel
 {
     protected $table = 'vr_categories_translations';
 
@@ -13,7 +13,7 @@ class VRCategoriesTranslations extends Model
 
 
     protected static function boot() {
-        Model::boot();
+        parent::boot();
         static::creating(function($model) {
             if(!isset($model->attributes['id'])) {
                 $model->attributes['id'] = Uuid::uuid4();

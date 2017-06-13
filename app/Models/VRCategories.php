@@ -14,7 +14,7 @@ class VRCategories extends CoreModel
     protected $with = ['translation'];
 
     protected static function boot() {
-        Model::boot();
+        parent::boot();
         static::creating(function($model) {
             if(!isset($model->attributes['id'])) {
                 $model->attributes['id'] = Uuid::uuid4();
