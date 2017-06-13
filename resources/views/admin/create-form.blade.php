@@ -7,7 +7,7 @@
         <div class="container">
             <div><h2>{{trans('app.' . $tableName)}}</h2></div>
 
-            {!! Form::open(['url' => route('app.' . $tableName . '.store')]) !!}
+            {!! Form::open(['url' => $route]) !!}
 
             @foreach($fields as $field)
 

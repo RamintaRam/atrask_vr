@@ -31,21 +31,15 @@ class VRCategoriesController extends Controller {
      */
     public function adminCreate()
     {
+        $config = $this->getFormData();
         $data = request()->all();
         $dataFromModel = new VRCategories();
         $config['tableName'] = $dataFromModel->getTableName();
+        $config['list'] = VRCategories::get()->toArray();
+        $config['route'] = route('app.categories.create');
 
+//getFormData() funkcija apraryta apacioje.
 
-        $config['fields'][] = [
-            "type" => "dropDown",
-            "key" => "language_code",
-            "option" => getActiveLanguages(),
-        ];
-        $config['fields'][]=
-            [
-                "type" => "singleLine",
-                "key" => "name",
-            ];
 
 
 
@@ -107,7 +101,13 @@ class VRCategoriesController extends Controller {
 	 */
 	public function adminEdit($id)
 	{
-		//
+        $config = $this->getFormData();
+        $dataFromModel = new VRCategories();
+        $config['tableName'] = $dataFromModel->getTableName();
+        $config['route'] = route('app.categories.edit', $id);
+
+
+        return view('admin.create-form', $config);
 	}
 
 	/**
@@ -133,5 +133,22 @@ class VRCategoriesController extends Controller {
 	{
 		//
 	}
+
+
+	public function getFormData()
+    {
+        $config['fields'][] = [
+            "type" => "dropDown",
+            "key" => "language_code",
+            "option" => getActiveLanguages(),
+        ];
+        $config['fields'][]=
+            [
+                "type" => "singleLine",
+                "key" => "name",
+            ];
+
+        return $config;
+    }
 
 }
