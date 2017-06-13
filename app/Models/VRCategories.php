@@ -11,6 +11,7 @@ class VRCategories extends CoreModel
 
     protected $fillable = ['id'];
 
+    protected $with = ['translation'];
 
     protected static function boot() {
         Model::boot();
@@ -21,5 +22,11 @@ class VRCategories extends CoreModel
                 $model->{$model->getKeyName()} = $model->attributes['id'];
             }
         });
+    }
+
+    public function translation()
+    {
+        $lang = app()->getLocale();
+        return $this->hasOne(VRCategoriesTranslations::class, 'record_id', 'id')->where('language_code', $lang);
     }
 }
