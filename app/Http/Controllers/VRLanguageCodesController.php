@@ -29,7 +29,7 @@ class VRLanguageCodesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function adminCreate()
 	{
 		//
 	}
@@ -40,7 +40,7 @@ class VRLanguageCodesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function adminStore()
 	{
 		//
 	}
