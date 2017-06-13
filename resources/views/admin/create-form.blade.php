@@ -16,7 +16,10 @@
                     {{Form::select($field['key'], $field['option'])}}<br/><br/>
                 @elseif($field['type'] == 'singleLine')
                     {!! Form::label(trans('app.' . $field['key'])) !!}<br/>
-                    {!! Form::text($field['key'])!!}<br/><br/><br/>
+                    {!! Form::text($field['key'])!!}<br/><br/>
+                @elseif($field['type'] == 'checkBox')
+                    {!! Form::label(trans('app.' . $field['key'])) !!}<br/>
+                    {!! Form::checkbox($field['key'])!!}<br/><br/><br/>
 
 
                 @endif
