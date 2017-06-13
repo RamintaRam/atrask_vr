@@ -119,7 +119,7 @@ class VRMenuController extends Controller {
                 "type" => "checkBox",
                 "key" => "newWindow",
                 "option" => [
-
+                    'value' => 'label'
                 ]
             ];
 
