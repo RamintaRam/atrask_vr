@@ -1,6 +1,8 @@
 <?php namespace App\Http\Controllers;
 
+use App\VRCategories;
 use App\VRMenu;
+use App\VRMenuTranslations;
 use Illuminate\Routing\Controller;
 
 class VRMenuController extends Controller {
@@ -53,7 +55,11 @@ class VRMenuController extends Controller {
 	 */
 	public function adminStore()
 	{
-		//
+        $record = VRMenu::create();
+        $data['record_id'] = $record->id;
+        VRMenuTranslations::create($data);
+
+        return redirect()->route('app.menu.edit',[$record->id]);
 	}
 
 	/**
