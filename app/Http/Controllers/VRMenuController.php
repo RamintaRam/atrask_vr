@@ -136,12 +136,12 @@ class VRMenuController extends Controller
         $config['fields'][] =
             [
                 "type" => "checkBox",
-                "key" => "newWindow",
-                "option" => [
+                "key" => '',
+                "option" => [[
                     'name' => 'newWindow',
                     'value' => 1,
-//                    'title' =>
-                ]
+                    'title' => trans("app.newWindow"),
+                ]]
             ];
 
         $config['fields'][] =
@@ -158,8 +158,9 @@ class VRMenuController extends Controller
                 "type" => "dropDown",
                 "key" => "vr_parent_id",
                 "option" => [
+                    [
                     'key' => 'value'
-                ]
+                ]]
             ];
 
         return $config;

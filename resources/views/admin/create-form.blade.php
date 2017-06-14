@@ -20,9 +20,12 @@
                     {!! Form::text($field['key'])!!}<br/><br/>
 
                 @elseif($field['type'] == 'checkBox')
-                    {!! Form::checkbox($field['key'])!!}<br/><br/>
+                    @if(isset ($field['key']))
+                    @foreach($field['option'] as $option)
+                        {{ Form::checkbox($option['name'], $option['value'])}} {{$option['title']}} <br/><br/>
 
-
+                    @endforeach
+                @endif
                 @endif
             @endforeach
 
