@@ -15,7 +15,7 @@ class AlterTableVrMenuChangeVrParentId extends Migration
     {
         Schema::table('vr_menu', function (Blueprint $table) {
 
-            $table->integer('vr_parent_id')->change();
+            $table->boolean('new_window')->change();
 
         });
     }
@@ -28,7 +28,7 @@ class AlterTableVrMenuChangeVrParentId extends Migration
     public function down()
     {
         Schema::table('vr_menu', function (Blueprint $table) {
-            $table->drop('vr_parent_id');
+            $table->string('new_window')->change();
         });
     }
 }
