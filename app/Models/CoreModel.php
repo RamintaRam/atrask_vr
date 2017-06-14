@@ -16,7 +16,7 @@ class CoreModel extends Model
 
     use TableNameTrait;
 
-//    protected $hidden = ['deleted_at'];
+    protected $hidden = ['deleted_at'];
 
     public $incrementing = false;
 }

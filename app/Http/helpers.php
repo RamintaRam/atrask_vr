@@ -9,3 +9,4 @@ function getActiveLanguages()
 
     return $config;
 }
+

@@ -22,7 +22,9 @@ return [
     'name' => "Pavadinimas",
     'language_code' => 'Kalba',
     'create' => 'Sukurti',
-    'url' => 'URL',
+    'url' => 'Nuoroda',
     'newWindow' => 'Atidaryti naujame lange',
+    'vr Parent Id' => 'Parent ID',
+    'sequence' => 'Eiliškumas',
 
 ];

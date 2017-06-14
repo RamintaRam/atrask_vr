@@ -5,16 +5,17 @@ use App\VRMenu;
 use App\VRMenuTranslations;
 use Illuminate\Routing\Controller;
 
-class VRMenuController extends Controller {
+class VRMenuController extends Controller
+{
 
-	/**
-	 * Display a listing of the resource.
-	 * GET /vrmenu
-	 *
-	 * @return Response
-	 */
-	public function adminIndex()
-	{
+    /**
+     * Display a listing of the resource.
+     * GET /vrmenu
+     *
+     * @return Response
+     */
+    public function adminIndex()
+    {
 
         $dataFromModel = new VRMenu();
         $config['tableName'] = $dataFromModel->getTableName();
@@ -26,89 +27,91 @@ class VRMenuController extends Controller {
 
         return view('admin.list', $config);
 
-	}
+    }
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /vrmenu/create
-	 *
-	 * @return Response
-	 */
-	public function adminCreate()
-	{
-             $config = $this->getFormData();
+    /**
+     * Show the form for creating a new resource.
+     * GET /vrmenu/create
+     *
+     * @return Response
+     */
+    public function adminCreate()
+    {
+        $config = $this->getFormData();
         $dataFromModel = new VRMenu();
         $config['tableName'] = $dataFromModel->getTableName();
-       $config['route'] = route('app.menu.create');
+        $config['route'] = route('app.menu.create');
 
         //getFormData() funkcija apraryta apacioje.
 
         return view('admin.create-form', $config);
 
-	}
+    }
 
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /vrmenu
-	 *
-	 * @return Response
-	 */
-	public function adminStore()
-	{
-        $record = VRMenu::create();
+    /**
+     * Store a newly created resource in storage.
+     * POST /vrmenu
+     *
+     * @return Response
+     */
+    public function adminStore()
+    {
+        $data = request()->all();
+
+        $record = VRMenu::create($data);
         $data['record_id'] = $record->id;
         VRMenuTranslations::create($data);
 
-        return redirect()->route('app.menu.edit',[$record->id]);
-	}
+        return redirect()->route('app.menu.edit', [$record->id]);
+    }
 
-	/**
-	 * Display the specified resource.
-	 * GET /vrmenu/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function adminShow($id)
-	{
-		//
-	}
+    /**
+     * Display the specified resource.
+     * GET /vrmenu/{id}
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function adminShow($id)
+    {
+        //
+    }
 
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /vrmenu/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function adminEdit($id)
-	{
-		//
-	}
+    /**
+     * Show the form for editing the specified resource.
+     * GET /vrmenu/{id}/edit
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function adminEdit($id)
+    {
+        //
+    }
 
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /vrmenu/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function adminUpdate($id)
-	{
-		//
-	}
+    /**
+     * Update the specified resource in storage.
+     * PUT /vrmenu/{id}
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function adminUpdate($id)
+    {
+        //
+    }
 
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /vrmenu/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function adminDestroy($id)
-	{
-		//
-	}
+    /**
+     * Remove the specified resource from storage.
+     * DELETE /vrmenu/{id}
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function adminDestroy($id)
+    {
+        //
+    }
 
 
     public function getFormData()
@@ -135,7 +138,27 @@ class VRMenuController extends Controller {
                 "type" => "checkBox",
                 "key" => "newWindow",
                 "option" => [
-                    'value' => 'label'
+                    'name' => 'newWindow',
+                    'value' => 1,
+//                    'title' =>
+                ]
+            ];
+
+        $config['fields'][] =
+            [
+                "type" => "singleLine",
+                "key" => "sequence",
+                "option" => [
+                    'key' => 'value'
+                ]
+            ];
+
+        $config['fields'][] =
+            [
+                "type" => "dropDown",
+                "key" => "vr_parent_id",
+                "option" => [
+                    'key' => 'value'
                 ]
             ];
 

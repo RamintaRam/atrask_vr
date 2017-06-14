@@ -15,7 +15,7 @@ class CreateVrRolesTable extends Migration {
 		Schema::create('vr_roles', function(Blueprint $table)
 		{
 			$table->integer('count', true);
-			$table->string('id', 36)->unique('id_UNIQUE');
+			$table->string('id', 36)->default(0)->unique('id_UNIQUE');
 			$table->timestamps();
 			$table->softDeletes();
 			$table->string('name');

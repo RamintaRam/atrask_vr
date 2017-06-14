@@ -24,5 +24,6 @@ return [
     'create' => 'Create',
     'url' => 'URL',
     'newWindow' => 'Open in new Window',
+    'sequence' => 'Sequence',
 
 ];
