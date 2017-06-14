@@ -16,7 +16,9 @@ class VROrderController extends Controller {
         $dataFromModel = new VROrder();
         $config['tableName'] = $dataFromModel->getTableName();
         $config['list'] = VROrder::get()->toArray();
-        $config['callToAction'] = 'app.users.update';
+        $config['new'] = 'app.categories.create';
+        $config['edit'] = 'app.categories.edit';
+        $config['delete'] = 'app.categories.delete';
 
         return view('admin.list', $config);
 	}

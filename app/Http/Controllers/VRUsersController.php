@@ -2,6 +2,8 @@
 
 
 use App\Models\VRUsers;
+use App\VRConnectionsUsersRoles;
+use App\VRMenu;
 use Illuminate\Routing\Controller;
 
 class VRUsersController extends Controller {
@@ -17,7 +19,9 @@ class VRUsersController extends Controller {
         $dataFromModel = new VRUsers();
         $config['tableName'] = $dataFromModel->getTableName();
         $config['list'] = VRUsers::get()->toArray();
-        $config['callToAction'] = 'app.users.update';
+        $config['new'] = 'app.user.create';
+        $config['edit'] = 'app.user.edit';
+        $config['delete'] = 'app.user.delete';
 
         return view('admin.list', $config);
 
@@ -31,7 +35,14 @@ class VRUsersController extends Controller {
 	 */
 	public function create()
 	{
-		//
+        $config = $this->getFormData();
+        $dataFromModel = new VRUsers();
+        $config['tableName'] = $dataFromModel->getTableName();
+        $config['route'] = route('app.user.create');
+
+        //getFormData() funkcija apraryta apacioje.
+
+        return view('admin.create-form', $config);
 	}
 
 	/**
@@ -93,9 +104,66 @@ class VRUsersController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function adminDestroy($id)
 	{
-		//
+        VRConnectionsUsersRoles::destroy(VRConnectionsUsersRoles::where('user_id', $id)->pluck('id')->toArray());
+
+        VRUsers::destroy($id);
+
+        return json_encode(["success" => true, "id" => $id]);
+
 	}
 
+	
+//    public function getFormData()
+//    {
+//        $config['fields'][] = [
+//            "type" => "dropDown",
+//            "key" => "language_code",
+//            "option" => getActiveLanguages(),
+//        ];
+//        $config['fields'][] =
+//            [
+//                "type" => "singleLine",
+//                "key" => "name",
+//            ];
+//
+//        $config['fields'][] =
+//            [
+//                "type" => "singleLine",
+//                "key" => "url",
+//            ];
+//
+//        $config['fields'][] =
+//            [
+//                "type" => "checkBox",
+//                "key" => '',
+//                "option" => [[
+//                    'name' => 'new_window',
+//                    'value' => 1,
+//                    'title' => trans("app.newWindow"),
+//                ]]
+//            ];
+//
+//        $config['fields'][] =
+//            [
+//                "type" => "singleLine",
+//                "key" => "sequence",
+//                "option" => [
+//                    'key' => 'value',
+//                ]
+//            ];
+//
+//        $config['fields'][] =
+//            [
+//                "type" => "dropDown",
+//                "key" => "vr_parent_id",
+//                "option" => VRMenuTranslations::pluck('name', 'record_id'),
+//
+//            ];
+//
+//        return $config;
+//    }
+
 }
+

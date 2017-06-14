@@ -10,7 +10,7 @@
             {!! Form::open(['url' => $route]) !!}
 
             @foreach($fields as $field)
-
+                @if(isset ($field['key']))
                 {!! Form::label(trans('app.' . $field['key'])) !!}<br/>
 
                 @if($field['type'] == 'dropDown')
@@ -20,7 +20,7 @@
                     {!! Form::text($field['key'])!!}<br/><br/>
 
                 @elseif($field['type'] == 'checkBox')
-                    @if(isset ($field['key']))
+
                     @foreach($field['option'] as $option)
                         {{ Form::checkbox($option['name'], $option['value'])}} {{$option['title']}} <br/><br/>
 

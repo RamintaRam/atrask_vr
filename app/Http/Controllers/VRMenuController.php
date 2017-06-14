@@ -138,7 +138,7 @@ class VRMenuController extends Controller
                 "type" => "checkBox",
                 "key" => '',
                 "option" => [[
-                    'name' => 'newWindow',
+                    'name' => 'new_window',
                     'value' => 1,
                     'title' => trans("app.newWindow"),
                 ]]
@@ -149,7 +149,7 @@ class VRMenuController extends Controller
                 "type" => "singleLine",
                 "key" => "sequence",
                 "option" => [
-                    'key' => 'value'
+                    'key' => 'value',
                 ]
             ];
 
@@ -157,10 +157,8 @@ class VRMenuController extends Controller
             [
                 "type" => "dropDown",
                 "key" => "vr_parent_id",
-                "option" => [
-                    [
-                    'key' => 'value'
-                ]]
+                "option" => VRMenuTranslations::pluck('name', 'record_id'),
+
             ];
 
         return $config;
