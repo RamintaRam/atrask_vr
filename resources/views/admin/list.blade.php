@@ -124,6 +124,8 @@
         }
 
 
+
+
         function deleteItem(route) {
             $.ajax({
                 url: route,
@@ -138,6 +140,11 @@
                 }
             });
         }
+
+
+
+
+
 
 
     </script>
