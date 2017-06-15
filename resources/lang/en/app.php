@@ -25,5 +25,6 @@ return [
     'url' => 'URL',
     'newWindow' => 'Open in new Window',
     'sequence' => 'Sequence',
+    'vr_parent_id' => 'Parent ID',
 
 ];

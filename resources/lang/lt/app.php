@@ -24,7 +24,7 @@ return [
     'create' => 'Sukurti',
     'url' => 'Nuoroda',
     'newWindow' => 'Atidaryti naujame lange',
-    'vr Parent Id' => 'Parent ID',
     'sequence' => 'Eiliškumas',
+    'vr_parent_id' => 'Parent ID',
 
 ];
