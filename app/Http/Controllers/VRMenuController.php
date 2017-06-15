@@ -85,13 +85,17 @@ class VRMenuController extends Controller
      * @return Response
      */
     public function adminEdit($id)
-    {
-        $config = $this->getFormData();
+    {   $record = VRMenu::find($id)->toArray();
+        $record['name'] = $record['translation']['name'];
+        $record['url'] = $record['translation']['url'];
+        $record['language_code'] = $record['translation']['language_code'];
+
         $dataFromModel = new VRMenu();
+
+        $config = $this->getFormData();
         $config['tableName'] = $dataFromModel->getTableName();
         $config['route'] = route('app.menu.edit', $id);
-        $record = VRMenu::find($id)->toArray();
-
+        $config['record'] = $record;
 
         return view('admin.create-form', $config);
     }
