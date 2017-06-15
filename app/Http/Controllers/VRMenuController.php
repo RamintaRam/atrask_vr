@@ -127,6 +127,10 @@ class VRMenuController extends Controller
 
     public function getFormData()
     {
+        $lang = request('language_code');
+        if($lang == null)
+            $lang = app()->getLocale();
+
         $config['fields'][] = [
             "type" => "dropDown",
             "key" => "language_code",
@@ -168,7 +172,7 @@ class VRMenuController extends Controller
             [
                 "type" => "dropDown",
                 "key" => "vr_parent_id",
-                "option" => VRMenuTranslations::pluck('name', 'record_id'),
+                "option" => VRMenuTranslations::where('language_code', $lang)->pluck('name', 'record_id'),
 
             ];
 
