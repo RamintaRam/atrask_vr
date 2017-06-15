@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-use App\VRCategories;
+
 use App\VRMenu;
 use App\VRMenuTranslations;
 use Illuminate\Routing\Controller;
@@ -86,7 +86,14 @@ class VRMenuController extends Controller
      */
     public function adminEdit($id)
     {
-        //
+        $config = $this->getFormData();
+        $dataFromModel = new VRMenu();
+        $config['tableName'] = $dataFromModel->getTableName();
+        $config['route'] = route('app.menu.edit', $id);
+        $record = VRMenu::find($id)->toArray();
+
+
+        return view('admin.create-form', $config);
     }
 
     /**
@@ -110,7 +117,11 @@ class VRMenuController extends Controller
      */
     public function adminDestroy($id)
     {
-        //
+        VRMenuTranslations::destroy(VRMenuTranslations::where('record_id', $id)->pluck('id')->toArray());
+
+        VRMenu::destroy($id);
+
+        return json_encode(["success" => true, "id" => $id]);
     }
 
 

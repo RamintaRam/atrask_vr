@@ -114,7 +114,7 @@ class VRUsersController extends Controller {
 
 	}
 
-	
+
 //    public function getFormData()
 //    {
 //        $config['fields'][] = [

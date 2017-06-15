@@ -13,8 +13,8 @@ class VRLanguagesSeeder extends Seeder
     public function run()
     {
         $list = [
-            ["name" => "English", "id" => "en", "language_code" =>"EN"],
             ["name" => "Lietuvių", "id" => "lt", "language_code" =>"LT"],
+            ["name" => "English", "id" => "en", "language_code" =>"EN"],
             ["name" => "Русский", "id" => "ru", "language_code" => "RU"],
             ["name" => "Deutsch", "id" => "de", "language_code" =>"DE"],
             ["name" => "Français", "id" => "fr", "language_code" =>"FR"], 
