@@ -11,21 +11,25 @@
 
             @foreach($fields as $field)
                 @if(isset ($field['key']))
-                {!! Form::label(trans('app.' . $field['key'])) !!}<br/>
+                    {!! Form::label($field['key'], trans('app.' . $field['key'])) !!}<br/>
 
-                @if($field['type'] == 'dropDown')
-                    {{Form::select($field['key'], $field['option'])}}<br/><br/>
+                    @if($field['type'] == 'dropDown')
 
-                @elseif($field['type'] == 'singleLine')
-                    {!! Form::text($field['key'])!!}<br/><br/>
+                        @if($field['key']=='language_code')
+                            {{Form::select($field['key'], $field['option'])}}<br/><br/>
+                        @else
+                            {{Form::select($field['key'], $field['option'], null, ['placeholder'=>''])}}<br/><br/>
+                        @endif
+                    @elseif($field['type'] == 'singleLine')
+                        {!! Form::text($field['key'])!!}<br/><br/>
 
-                @elseif($field['type'] == 'checkBox')
+                    @elseif($field['type'] == 'checkBox')
 
-                    @foreach($field['option'] as $option)
-                        {{ Form::checkbox($option['name'], $option['value'])}} {{$option['title']}} <br/><br/>
+                        @foreach($field['option'] as $option)
+                            {{ Form::checkbox($option['name'], $option['value'])}} {{$option['title']}} <br/><br/>
 
-                    @endforeach
-                @endif
+                        @endforeach
+                    @endif
                 @endif
             @endforeach
 
@@ -39,4 +43,24 @@
 
 
 
+@endsection
+
+@section('scripts')
+
+    <script>
+
+        console.log($('#language_code'));
+        $('#language_code').bind('change', function()
+        {
+            window.location.href = '?language_code=' +  $('#language_code').val();
+            alert($('#language_code').val());
+
+
+        })
+
+
+
+
+
+</script>
 @endsection
