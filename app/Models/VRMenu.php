@@ -13,13 +13,13 @@ class VRMenu extends CoreModel
 
     protected $fillable = ['id', 'new_window', 'sequence', 'vr_parent_id'];
 
-//    protected $with = ['translation'];
+    protected $with = ['translation'];
 
 
     protected static function boot() {
         parent::boot();
-        static::creating(function($model) {
-            if(!isset($model->attributes['id'])) {
+        static::creating(function ($model) {
+            if (!isset($model->attributes['id'])) {
                 $model->attributes['id'] = Uuid::uuid4();
             } else {
                 $model->{$model->getKeyName()} = $model->attributes['id'];
@@ -27,10 +27,12 @@ class VRMenu extends CoreModel
         });
     }
 
-    public function menuTranslation()
+    public function translation()
     {
+
         $lang = app()->getLocale();
-        return $this->hasOne(VRMenuTranslations::class, 'record_id', 'id')->where('language_code', $lang);
-}
+        return $this->hasOne(VRMenuTranslations::class, 'record_id', 'id')
+            ->where('language_code', $lang);
+    }
 
 }
