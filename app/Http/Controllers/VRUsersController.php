@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 
+use App\Models\VRRoles;
 use App\Models\VRUsers;
 use App\VRConnectionsUsersRoles;
 use App\VRMenu;
@@ -19,9 +20,9 @@ class VRUsersController extends Controller {
         $dataFromModel = new VRUsers();
         $config['tableName'] = $dataFromModel->getTableName();
         $config['list'] = VRUsers::get()->toArray();
-        $config['new'] = 'app.user.create';
-        $config['edit'] = 'app.user.edit';
-        $config['delete'] = 'app.user.delete';
+        $config['new'] = 'app.users.create';
+        $config['edit'] = 'app.users.edit';
+        $config['delete'] = 'app.users.delete';
 
         return view('admin.list', $config);
 
@@ -33,7 +34,7 @@ class VRUsersController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function adminCreate()
 	{
         $config = $this->getFormData();
         $dataFromModel = new VRUsers();
@@ -51,9 +52,15 @@ class VRUsersController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function adminStore()
 	{
-		//
+        $data = request()->all();
+
+        $record = VRUsers::create($data);
+        $data['record_id'] = $record->id;
+        VRConnectionsUsersRoles::create($data);
+
+        return redirect()->route('app.users.edit', [$record->id]);
 	}
 
 	/**
@@ -75,9 +82,16 @@ class VRUsersController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function adminEdit($id)
 	{
-		//
+        $config = $this->getFormData();
+        $dataFromModel = new VRUsers();
+        $config['tableName'] = $dataFromModel->getTableName();
+        $config['route'] = route('app.users.edit', $id);
+        $record = VRUsers::find($id)->toArray();
+
+
+        return view('admin.create-form', $config);
 	}
 
 	/**
@@ -87,7 +101,7 @@ class VRUsersController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function adminUpdate($id)
 	{
         $record = VRUsers::find($id);
 
@@ -115,24 +129,34 @@ class VRUsersController extends Controller {
 	}
 
 
-//    public function getFormData()
-//    {
-//        $config['fields'][] = [
-//            "type" => "dropDown",
-//            "key" => "language_code",
-//            "option" => getActiveLanguages(),
-//        ];
-//        $config['fields'][] =
-//            [
-//                "type" => "singleLine",
-//                "key" => "name",
-//            ];
+    public function getFormData()
+    {
+        $config['fields'][] =
+            [
+                "type" => "dropDown",
+                "key" => "vr_parent_id",
+                "option" => VRRoles::pluck('name', 'id'),
+
+            ];
+
+        $config['fields'][] =
+            [
+                "type" => "singleLine",
+                "key" => "name",
+
+            ];
 //
-//        $config['fields'][] =
-//            [
-//                "type" => "singleLine",
-//                "key" => "url",
-//            ];
+        $config['fields'][] =
+            [
+                "type" => "singleLine",
+                "key" => "email",
+            ];
+
+        $config['fields'][] =
+            [
+                "type" => "singleLine",
+                "key" => "phone",
+            ];
 //
 //        $config['fields'][] =
 //            [
@@ -154,16 +178,10 @@ class VRUsersController extends Controller {
 //                ]
 //            ];
 //
-//        $config['fields'][] =
-//            [
-//                "type" => "dropDown",
-//                "key" => "vr_parent_id",
-//                "option" => VRMenuTranslations::pluck('name', 'record_id'),
 //
-//            ];
 //
 //        return $config;
-//    }
+    }
 
 }
 
