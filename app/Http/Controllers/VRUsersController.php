@@ -57,8 +57,11 @@ class VRUsersController extends Controller {
 	public function adminStore()
 	{
         $data = request()->all();
-//$data['id'] = Uuid::uuid4();
+        $data['password']= bcrypt($data['password']);
+
         $record = VRUsers::create($data);
+
+
         $data['user_id'] = $record->id;
 
         VRConnectionsUsersRoles::create($data);
