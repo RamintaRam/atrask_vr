@@ -34,9 +34,9 @@
 
                     @elseif($field['type'] == 'singleLine')
                         @if(isset($record[$field['key']]))
-                            {!! Form::text($field['key'], $record[$field['key']])!!}<br/><br/>
+                            {!! Form::text ($field['key'], $record[$field['key']])!!}<br/><br/>
                         @else
-                            {!! Form::text($field['key'])!!}<br/><br/>
+                            {!! Form::text ($field['key'])!!}<br/><br/>
                         @endif
                     @elseif($field['type'] == 'checkBox')
 

@@ -2,9 +2,8 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 
-class VRResources extends Model
+class VRResources extends CoreModel
 {
     protected $table = 'vr_resources';
 

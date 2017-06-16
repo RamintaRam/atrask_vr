@@ -10,6 +10,7 @@
                 <div><a class="btn btn-success btn-sm" href="{{route($new)}}">{{trans('app.createNew')}}</a></div>
             @endif
 
+            {{--jeigu liste yra duomenu--}}
             @if(sizeof($list)>0)
                 <table class="table">
                     <thead>
@@ -47,6 +48,8 @@
 
                                         @if(isset($value['name']))
                                             {{$value['name'] . ' ' . $value['language_code']}}
+                                        @elseif(($value['title']))
+                                            {{$value['title'] . ' ' . $value['language_code']}}
                                         @else
                                             -
                                         @endif
@@ -69,6 +72,7 @@
                     </tbody>
                 </table>
             @else
+                {{--jeigu duomenu liste nėra--}}
                 <p><h4 style="font-style: italic">{{trans('app.noData')}} </h4></p>
             @endif
 
