@@ -26,5 +26,12 @@ return [
     'newWindow' => 'Atidaryti naujame lange',
     'sequence' => 'Eiliškumas',
     'vr_parent_id' => 'Parent ID',
+    'created_at' => 'Sukurta',
+    'title' => 'Pavadinimas',
+    'description_short' => 'Trumpas aprašymas',
+    'description_long' => 'Ilgas aprašymas',
+    'cover_id'=> 'Paveikslėlis',
+    'category_id' => 'Kategorija',
+    'slug' => 'draugiškas URL',
 
 ];

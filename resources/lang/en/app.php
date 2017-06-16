@@ -26,5 +26,13 @@ return [
     'newWindow' => 'Open in new Window',
     'sequence' => 'Sequence',
     'vr_parent_id' => 'Parent ID',
+    'created_at' => 'Created at',
+    'title' => 'Title',
+    'description_short' => 'Short description',
+    'description_long' => 'Long description',
+    'cover_id'=> 'Image',
+    'category_id' => 'Category',
+    'slug' => 'SLUG',
+
 
 ];
