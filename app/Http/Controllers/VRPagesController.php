@@ -1,6 +1,10 @@
 <?php namespace App\Http\Controllers;
 
+use App\VRCategories;
+use App\VRCategoriesTranslations;
 use App\VRPages;
+use App\VRPagesTranslations;
+use App\VRResources;
 use Illuminate\Routing\Controller;
 
 class VRPagesController extends Controller {
@@ -15,10 +19,9 @@ class VRPagesController extends Controller {
 	{   $dataFromModel = new VRPages();
         $config['tableName'] = $dataFromModel->getTableName();
         $config['list'] = VRPages::get()->toArray();
-        $config['callToAction'] = 'app.users.update';
-        $config['new'] = 'app.categories.create';
-        $config['edit'] = 'app.categories.edit';
-        $config['delete'] = 'app.categories.delete';
+        $config['new'] = 'app.pages.create';
+        $config['edit'] = 'app.pages.edit';
+        $config['delete'] = 'app.pages.delete';
 
         return view('admin.list', $config);
 
@@ -30,9 +33,16 @@ class VRPagesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function adminCreate()
 	{
+        $config = $this->getFormData();
+        $dataFromModel = new VRPages();
+        $config['tableName'] = $dataFromModel->getTableName();
+        $config['route'] = route('app.pages.create');
 
+        //getFormData() funkcija apraryta apacioje.
+
+        return view('admin.create-form', $config);
 	}
 
 	/**
@@ -41,9 +51,14 @@ class VRPagesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function adminStore()
 	{
-		//
+        $data = request()->all();
+
+        $record = VRPages::create($data);
+        $data['record_id'] = $record->id;
+        VRPagesTranslations::create($data);
+        return redirect()->route('app.pages.edit', [$record->id]);
 	}
 
 	/**
@@ -65,9 +80,25 @@ class VRPagesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function adminEdit($id)
 	{
-		//
+	    $record = VRPages::find($id)->toArray();
+        $record['title'] = $record['translation']['title'];
+        $record['description_short'] = $record['translation']['description_short'];
+        $record['description_long'] = $record['translation']['description_long'];
+        $record['slug'] = $record['translation']['slug'];
+        //prisilyginam $record $record['translation'], kad atiduotų info, kokia buvo pasirinkta kuriant.
+
+
+        $config = $this->getFormData();
+        $dataFromModel = new VRPages();
+        $config['tableName'] = $dataFromModel->getTableName();
+        $config['route'] = route('app.pages.edit', $id);
+
+        $config['record'] = $record;
+
+
+        return view('admin.create-form', $config);
 	}
 
 	/**
@@ -77,7 +108,7 @@ class VRPagesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function adminUpdate($id)
 	{
         $record = VRPages::find($id);
 
@@ -94,9 +125,74 @@ class VRPagesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function adminDestroy($id)
 	{
-		//
+        VRPagesTranslations::destroy(VRPagesTranslations::where('record_id', $id)->pluck('id')->toArray());
+
+        VRPages::destroy($id);
+
+        return json_encode(["success" => true, "id" => $id]);
 	}
+
+
+
+    public function getFormData()
+    {
+        $lang = request('language_code');
+        if($lang == null)
+            $lang = app()->getLocale();
+
+        $config['fields'][] = [
+            "type" => "dropDown",
+            "key" => "language_code",
+            "option" => getActiveLanguages(),
+        ];
+
+        $config['fields'][] =
+            [
+                "type" => "dropDown",
+                "key" => "category_id",
+                "option" => VRCategoriesTranslations::where('language_code', $lang)->pluck('name', 'record_id'),
+
+
+            ];
+        $config['fields'][] =
+            [
+                "type" => "singleLine",
+                "key" => "title",
+            ];
+
+
+        $config['fields'][] =
+            [
+                "type" => "singleLine",
+                "key" => "description_short",
+            ];
+
+        $config['fields'][] =
+            [
+                "type" => "singleLine",
+                "key" => "description_long",
+            ];
+
+        $config['fields'][] =
+            [
+                "type" => "dropDown",
+                "key" => "cover_id",
+                "option" => VRResources::pluck('path', 'id'),
+            ];
+
+
+        $config['fields'][] =
+            [
+                "type" => "singleLine",
+                "key" => "slug",
+            ];
+
+
+        return $config;
+    }
+
+
 
 }
