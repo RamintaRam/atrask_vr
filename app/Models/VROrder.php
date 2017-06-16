@@ -5,7 +5,7 @@ namespace App;
 use App\Traits\TableNameTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class VROrder extends Model
+class VROrder extends CoreModel
 {
     use TableNameTrait;
 

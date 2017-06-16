@@ -32,6 +32,6 @@ return [
     'description_long' => 'Ilgas aprašymas',
     'cover_id'=> 'Paveikslėlis',
     'category_id' => 'Kategorija',
-    'slug' => 'draugiškas URL',
+    'slug' => 'Draugiškas URL',
 
 ];

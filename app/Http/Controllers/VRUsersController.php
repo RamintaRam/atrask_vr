@@ -5,7 +5,9 @@ use App\Models\VRRoles;
 use App\Models\VRUsers;
 use App\VRConnectionsUsersRoles;
 use App\VRMenu;
+use App\VRPermissions;
 use Illuminate\Routing\Controller;
+use Ramsey\Uuid\Uuid;
 
 class VRUsersController extends Controller {
 
@@ -39,7 +41,7 @@ class VRUsersController extends Controller {
         $config = $this->getFormData();
         $dataFromModel = new VRUsers();
         $config['tableName'] = $dataFromModel->getTableName();
-        $config['route'] = route('app.user.create');
+        $config['route'] = route('app.users.create');
 
         //getFormData() funkcija apraryta apacioje.
 
@@ -55,9 +57,10 @@ class VRUsersController extends Controller {
 	public function adminStore()
 	{
         $data = request()->all();
-
+//$data['id'] = Uuid::uuid4();
         $record = VRUsers::create($data);
-        $data['record_id'] = $record->id;
+        $data['user_id'] = $record->id;
+
         VRConnectionsUsersRoles::create($data);
 
         return redirect()->route('app.users.edit', [$record->id]);
@@ -131,13 +134,6 @@ class VRUsersController extends Controller {
 
     public function getFormData()
     {
-        $config['fields'][] =
-            [
-                "type" => "dropDown",
-                "key" => "vr_parent_id",
-                "option" => VRRoles::pluck('name', 'id'),
-
-            ];
 
         $config['fields'][] =
             [
@@ -157,7 +153,23 @@ class VRUsersController extends Controller {
                 "type" => "singleLine",
                 "key" => "phone",
             ];
+
+
+        $config['fields'][] =
+            [
+                "type" => "dropDown",
+                "key" => "role_id",
+                "option" => VRRoles::pluck('name', 'id'),
+
+            ];
 //
+        $config['fields'][] =
+            [
+                "type" => "singleLine",
+                "key" => "password",
+            ];
+
+
 //        $config['fields'][] =
 //            [
 //                "type" => "checkBox",
@@ -180,7 +192,7 @@ class VRUsersController extends Controller {
 //
 //
 //
-//        return $config;
+        return $config;
     }
 
 }
