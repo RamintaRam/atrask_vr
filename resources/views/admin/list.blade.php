@@ -54,6 +54,12 @@
                                             -
                                         @endif
 
+                                    {{--@elseif($key == 'file')--}}
+                                        {{--@if(isset($value['path']))--}}
+{{--{{$value['path']}}--}}
+                                        {{--@else--}}
+                                            {{-----}}
+                                        {{--@endif--}}
                                     @else
                                         {{$value}}
                                     @endif

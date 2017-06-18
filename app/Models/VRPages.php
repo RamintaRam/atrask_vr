@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\VRResources;
 use App\Traits\TableNameTrait;
 use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
@@ -30,13 +31,12 @@ class VRPages extends CoreModel
     public function translation()
     {
         $lang = request('language_code');
-        if($lang == null)
+        if ($lang == null)
             $lang = app()->getLocale();
 
         return $this->hasOne(VRPagesTranslations::class, 'record_id', 'id')
             ->where('language_code', $lang);
     }
-
 
 
 }

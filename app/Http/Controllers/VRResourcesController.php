@@ -1,5 +1,8 @@
 <?php namespace App\Http\Controllers;
 
+use App\VRResources;
+use Carbon\Carbon;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Routing\Controller;
 
 class VRResourcesController extends Controller {
@@ -15,6 +18,23 @@ class VRResourcesController extends Controller {
 		//
 	}
 
+
+    public function upload(UploadedFile $file)
+    {
+
+           $data =
+        [
+            "size" => $file->getsize(),
+            "mime_type" => $file->getMimetype(),
+        ];
+
+        $path = 'upload/' . date ("Y/m/d/");
+        $fileName = $file->getClientOriginalName();
+        $file->move(public_path($path), $fileName);
+        $data["path"] = $path . $fileName;
+
+        return VrResources::create($data);
+    }
 	/**
 	 * Show the form for creating a new resource.
 	 * GET /vrresources/create

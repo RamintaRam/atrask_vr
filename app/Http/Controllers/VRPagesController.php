@@ -4,7 +4,7 @@ use App\VRCategories;
 use App\VRCategoriesTranslations;
 use App\VRPages;
 use App\VRPagesTranslations;
-use App\VRResources;
+use App\Models\VRResources;
 use Illuminate\Routing\Controller;
 
 class VRPagesController extends Controller {
@@ -52,12 +52,20 @@ class VRPagesController extends Controller {
 	 * @return Response
 	 */
 	public function adminStore()
-	{
+    {
         $data = request()->all();
-
+        $resources = request()->file('file');
+        $uploadFile = new VRResourcesController();
+        $record = $uploadFile->upload($resources);
+        $data['cover_id'] = $record->id;
         $record = VRPages::create($data);
         $data['record_id'] = $record->id;
         VRPagesTranslations::create($data);
+
+
+
+
+
         return redirect()->route('app.pages.edit', [$record->id]);
 	}
 
@@ -174,13 +182,13 @@ class VRPagesController extends Controller {
                 "type" => "singleLine",
                 "key" => "description_long",
             ];
-
-        $config['fields'][] =
-            [
-                "type" => "dropDown",
-                "key" => "cover_id",
-                "option" => VRResources::pluck('path', 'id'),
-            ];
+//
+//        $config['fields'][] =
+//            [
+//                "type" => "dropDown",
+//                "key" => "cover_id",
+//                "option" => VRResources::pluck('path', 'id'),
+//            ];
 
 
         $config['fields'][] =
@@ -188,6 +196,14 @@ class VRPagesController extends Controller {
                 "type" => "singleLine",
                 "key" => "slug",
             ];
+
+        $config['fields'][] =
+            [
+                "type" => "file",
+                "key" => "cover_id",
+                "file" => VRResources::pluck('path', 'id'),
+            ];
+
 
 
         return $config;

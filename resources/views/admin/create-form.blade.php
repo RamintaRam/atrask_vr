@@ -7,7 +7,7 @@
         <div class="container">
             <div><h2>{{trans('app.' . $tableName)}}</h2></div>
 
-            {!! Form::open(['url' => $route]) !!}
+            {!! Form::open(['url' => $route, 'files' => true]) !!}
 
             @foreach($fields as $field)
                 @if(isset ($field['key']))
@@ -38,29 +38,42 @@
                         @else
                             {!! Form::text ($field['key'])!!}<br/><br/>
                         @endif
+
                     @elseif($field['type'] == 'checkBox')
+                        @if(isset($record[$field['key']]))
+                            @foreach($field['option'] as $option)
+                                {{Form::checkbox($option['name'],$option['value'], $record[$field['key']])}}
+                                <br/>
+                            @endforeach
+                        @else
+                            @foreach($field['option'] as $option)
+                                {{ Form::checkbox($option['name'], $option['value'])}} {{$option['title']}} <br/>
+                            @endforeach
+                        @endif
 
-
-                        @foreach($field['option'] as $option)
-                            {{ Form::checkbox($option['name'], $option['value'])}} {{$option['title']}} <br/>
-                            <br/>
-                        @endforeach
+                    @elseif($field['type'] == 'file')
+                        @if(isset($record[$field['key']]))
+                                {{Form::file('file'),$record[$field['key']]}}
+                        @else
+                            <div class="form-group">
+                                {{Form::file('file')}}
+                            </div>
+                        @endif
+                    @endif
                     @endif
 
+                    @endforeach
 
-                @endif
 
-            @endforeach
-
-            {!! Form::submit(trans('app.create') , ['class' => 'btn btn-success']) !!}
-            <a class="btn btn-primary"
-               href="{{ route('app.' . $tableName . '.index') }}">{{trans('app.' . $tableName)}}</a>
+                    {!! Form::submit(trans('app.create') , ['class' => 'btn btn-success']) !!}
+                    <a class="btn btn-primary"
+                       href="{{ route('app.' . $tableName . '.index') }}">{{trans('app.' . $tableName)}}</a>
 
         </div>
     </div>
 
 
-
+    {!!Form::close()!!}
 
 @endsection
 
