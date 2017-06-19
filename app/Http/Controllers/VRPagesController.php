@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Models\VRRoles;
 use App\VRCategories;
 use App\VRCategoriesTranslations;
 use App\VRConnectionsPagesResources;
@@ -68,11 +69,6 @@ class VRPagesController extends Controller
         VRPagesTranslations::create($data);
 
 
-
-        return redirect(route('app.pages.edit', $record->id));
-
-
-
         return redirect()->route('app.pages.edit', [$record->id]);
     }
 
@@ -97,11 +93,13 @@ class VRPagesController extends Controller
      */
     public function adminEdit($id)
     {
-        $record = VRPages::find($id)->toArray();
+        $record = VRPages::find($id);
+        $record['slug'] = $record['translation']['slug'];
         $record['title'] = $record['translation']['title'];
         $record['description_short'] = $record['translation']['description_short'];
         $record['description_long'] = $record['translation']['description_long'];
-        $record['slug'] = $record['translation']['slug'];
+        $record['language_code'] = $record['translation']['language_code'];
+
 
         //prisilyginam $record $record['translation'], kad atiduotų info, kokia buvo pasirinkta kuriant.
 
@@ -132,9 +130,20 @@ class VRPagesController extends Controller
         $data = request()->all();
         $record = VRPages::find($id);
         $record->update($data);
+        $data ['record_id']= $id;
+
+        VRPagesTranslations::updateOrCreate([
+            'record_id' => $id,
+            'language_code' => $data['language_code']
+        ], $data);
+
+//        VRResources::updateOrCreate([
+//            'id' => $id,
+//            'name' => $data['name']
+//        ], $data);
 
 
-        return view('admin.list');
+        return redirect(route('app.menu.edit', $record->id));
     }
 
     /**
@@ -192,13 +201,7 @@ class VRPagesController extends Controller
                 "type" => "singleLine",
                 "key" => "description_long",
             ];
-//
-//        $config['fields'][] =
-//            [
-//                "type" => "dropDown",
-//                "key" => "cover_id",
-//                "option" => VRResources::pluck('path', 'id'),
-//            ];
+
 
 
         $config['fields'][] =
@@ -212,6 +215,13 @@ class VRPagesController extends Controller
                 "type" => "file",
                 "key" => "cover_id",
                 "file" => VRResources::pluck('path', 'id'),
+            ];
+
+        $config['fields'][]=
+            [
+                "type" => "checkBox",
+                "key" => "delete",
+                "option" => VRResources::destroy(VRResources::pluck('id')),
             ];
 
 
