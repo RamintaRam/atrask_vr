@@ -100,12 +100,14 @@ class VRCategoriesController extends Controller
      */
     public function adminEdit($id)
     {
+        $record = VRCategories::find($id)->toArray();
+        $record['name'] = $record['translation']['name'];
         $config = $this->getFormData();
         $dataFromModel = new VRCategories();
         $config['tableName'] = $dataFromModel->getTableName();
         $config['route'] = route('app.categories.edit', $id);
-        $record = VRCategories::find($id)->toArray();
 
+        $config['record'] = $record;
 
         return view('admin.create-form', $config);
     }

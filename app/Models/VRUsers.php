@@ -23,6 +23,8 @@ class VRUsers extends Authenticatable
 
     protected $table = 'vr_users';
 
+    protected $with = ['role'];
+
     protected $fillable = ['id', 'name', 'email', 'password', 'phone', 'remember_token'];
 
     /**
@@ -55,9 +57,9 @@ class VRUsers extends Authenticatable
         return $this->belongsToMany(VRRoles::class, 'vr_connections_users_roles', 'user_id', 'role_id');
     }
 
-    public function rolesConnections()
-    {
-        return $this->hasOne(VRConnectionsUsersRoles::class, 'user_id', 'id');
-    }
+    public function role()
+{
+    return $this->hasOne(VRConnectionsUsersRoles::class, 'user_id', 'id');
+}
 
 }

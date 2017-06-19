@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-use App\VRResources;
+use App\Models\VRResources;
 use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Routing\Controller;

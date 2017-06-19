@@ -26,6 +26,8 @@ class VRUsersController extends Controller {
         $config['edit'] = 'app.users.edit';
         $config['delete'] = 'app.users.delete';
 
+
+
         return view('admin.list', $config);
 
 	}
@@ -43,7 +45,7 @@ class VRUsersController extends Controller {
         $config['tableName'] = $dataFromModel->getTableName();
         $config['route'] = route('app.users.create');
 
-        //getFormData() funkcija apraryta apacioje.
+        //getFormData() funkcija aprasyta apacioje.
 
         return view('admin.create-form', $config);
 	}
@@ -58,13 +60,10 @@ class VRUsersController extends Controller {
 	{
         $data = request()->all();
         $data['password']= bcrypt($data['password']);
-
         $record = VRUsers::create($data);
-
-
         $data['user_id'] = $record->id;
-
         VRConnectionsUsersRoles::create($data);
+
 
         return redirect()->route('app.users.edit', [$record->id]);
 	}
@@ -90,11 +89,14 @@ class VRUsersController extends Controller {
 	 */
 	public function adminEdit($id)
 	{
+        $record = VRUsers::find($id)->toArray();
+        $record['role_id'] = $record['role']['role_id'];
+
         $config = $this->getFormData();
+        $config['record'] = $record;
         $dataFromModel = new VRUsers();
         $config['tableName'] = $dataFromModel->getTableName();
         $config['route'] = route('app.users.edit', $id);
-        $record = VRUsers::find($id)->toArray();
 
 
         return view('admin.create-form', $config);
@@ -114,6 +116,7 @@ class VRUsersController extends Controller {
         $data = request()->all();
         $record->update($data);
 
+
         return $record;
 	}
 
@@ -126,7 +129,7 @@ class VRUsersController extends Controller {
 	 */
 	public function adminDestroy($id)
 	{
-        VRConnectionsUsersRoles::destroy(VRConnectionsUsersRoles::where('user_id', $id)->pluck('id')->toArray());
+        VRConnectionsUsersRoles::where('user_id', $id)->delete();
 
         VRUsers::destroy($id);
 

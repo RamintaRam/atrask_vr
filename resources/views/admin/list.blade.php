@@ -44,6 +44,15 @@
                                                onclick="toggleActive('{{route($callToAction, $record['id'])}}', 1)"
                                                href="#">{{trans('app.activate')}}</a>
                                         @endif
+                                    @elseif($key == 'role')
+
+                                        @if(isset($value['name']))
+                                            {{$value['title'] . ' ' . $value['language_code']}}
+                                        @else
+                                            -
+                                        @endif
+
+
                                     @elseif($key == 'translation')
 
                                         @if(isset($value['name']))
@@ -53,6 +62,7 @@
                                         @else
                                             -
                                         @endif
+
 
                                     {{--@elseif($key == 'file')--}}
                                         {{--@if(isset($value['path']))--}}
