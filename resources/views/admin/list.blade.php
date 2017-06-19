@@ -7,7 +7,7 @@
         <div class="container">
             <div><h2>{{trans('app.' . $tableName)}}</h2></div><br>
             @if(isset($new))
-                <div><a class="btn btn-success btn-sm" href="{{route($new)}}">{{trans('app.createNew')}}</a></div>
+                <div><a class="btn btn-success btn-sm" href="{{route($new)}}">{{trans('app.createNew')}}</a></div><br>
             @endif
 
             {{--jeigu liste yra duomenu--}}
@@ -44,10 +44,11 @@
                                                onclick="toggleActive('{{route($callToAction, $record['id'])}}', 1)"
                                                href="#">{{trans('app.activate')}}</a>
                                         @endif
-                                    @elseif($key == 'role')
 
+
+                                    @elseif($key == 'role')
                                         @if(isset($value['name']))
-                                            {{$value['title'] . ' ' . $value['language_code']}}
+                                            {{$value['name']}}
                                         @else
                                             -
                                         @endif
@@ -64,12 +65,15 @@
                                         @endif
 
 
-                                    {{--@elseif($key == 'file')--}}
-                                        {{--@if(isset($value['path']))--}}
-{{--{{$value['path']}}--}}
-                                        {{--@else--}}
-                                            {{-----}}
-                                        {{--@endif--}}
+                                    @elseif($key == 'image')
+
+                                        @if(isset($value['path']))
+                                            <img src = {{$value['path']}} height="80" width="80">
+                                        @else
+                                            -
+                                        @endif
+
+
                                     @else
                                         {{$value}}
                                     @endif

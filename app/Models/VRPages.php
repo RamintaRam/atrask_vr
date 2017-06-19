@@ -15,7 +15,8 @@ class VRPages extends CoreModel
 
     protected $fillable = ['id', 'category_id', 'cover_id'];
 
-    protected $with = ['translation'];
+    protected $with = ['translation', 'image'];
+
 
     protected static function boot() {
         parent::boot();
@@ -38,5 +39,11 @@ class VRPages extends CoreModel
             ->where('language_code', $lang);
     }
 
+    //TODO with image
+
+    public function image()
+    {
+        return $this->hasOne(VRResources::class, 'id', 'cover_id');
+    }
 
 }

@@ -109,7 +109,7 @@ class VRMenuController extends Controller
      */
     public function adminUpdate($id)
     {
-        //
+
     }
 
     /**

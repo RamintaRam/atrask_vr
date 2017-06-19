@@ -2,6 +2,7 @@
 
 use App\VRCategories;
 use App\VRCategoriesTranslations;
+use App\VRConnectionsPagesResources;
 use App\VRPages;
 use App\VRPagesTranslations;
 use App\Models\VRResources;
@@ -22,6 +23,8 @@ class VRPagesController extends Controller {
         $config['new'] = 'app.pages.create';
         $config['edit'] = 'app.pages.edit';
         $config['delete'] = 'app.pages.delete';
+
+//        dd($config);
 
         return view('admin.list', $config);
 
@@ -62,10 +65,6 @@ class VRPagesController extends Controller {
         $data['record_id'] = $record->id;
         VRPagesTranslations::create($data);
 
-
-
-
-
         return redirect()->route('app.pages.edit', [$record->id]);
 	}
 
@@ -95,6 +94,7 @@ class VRPagesController extends Controller {
         $record['description_short'] = $record['translation']['description_short'];
         $record['description_long'] = $record['translation']['description_long'];
         $record['slug'] = $record['translation']['slug'];
+
         //prisilyginam $record $record['translation'], kad atiduotų info, kokia buvo pasirinkta kuriant.
 
 
@@ -123,7 +123,10 @@ class VRPagesController extends Controller {
         $data = request()->all();
         $record->update($data);
 
-        return $record;
+        $record->translation()->sync($data['translation']);
+
+
+        return view('app.pages.edit', $id);
 	}
 
 	/**
@@ -191,11 +194,11 @@ class VRPagesController extends Controller {
 //            ];
 
 
-        $config['fields'][] =
-            [
-                "type" => "singleLine",
-                "key" => "slug",
-            ];
+//        $config['fields'][] =
+//            [
+//                "type" => "singleLine",
+//                "key" => "slug",
+//            ];
 
         $config['fields'][] =
             [
