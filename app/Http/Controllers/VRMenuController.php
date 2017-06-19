@@ -109,6 +109,17 @@ class VRMenuController extends Controller
      */
     public function adminUpdate($id)
     {
+        $data = request()->all();
+        $record = VRMenu::find($id);
+        $record->update($data);
+        $data ['record_id']= $id;
+
+        VRMenuTranslations::updateOrCreate([
+            'record_id' => $id,
+            'language_code' => $data['language_code']
+        ], $data);
+
+        return redirect(route('app.menu.edit', $record->id));
 
     }
 
