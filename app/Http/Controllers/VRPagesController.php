@@ -217,12 +217,12 @@ class VRPagesController extends Controller
                 "file" => VRResources::pluck('path', 'id'),
             ];
 
-        $config['fields'][]=
-            [
-                "type" => "checkBox",
-                "key" => "delete",
-                "option" => VRResources::destroy(VRResources::pluck('id')),
-            ];
+//        $config['fields'][]=
+//            [
+//                "type" => "checkBox",
+//                "key" => "delete",
+//                "option" => VRResources::destroy(VRResources::pluck('id')),
+//            ];
 
 
         return $config;
