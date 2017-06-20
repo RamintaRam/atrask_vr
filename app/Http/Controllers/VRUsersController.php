@@ -112,9 +112,11 @@ class VRUsersController extends Controller {
 	public function adminUpdate($id)
 	{
 	    $data = request()->all();
-//        $record['password']= bcrypt($data['password']);
+        $record['password']= bcrypt($data['password']);
 
         $record = VRUsers::find($id);
+        $data['user_id'] = $record->id;
+
         $record->update($data);
 
         VRConnectionsUsersRoles::updateOrCreate([
@@ -123,7 +125,7 @@ class VRUsersController extends Controller {
         ],$data);
 
 
-        return view('admin.create-form', $record);
+        return redirect()->route('app.users.edit', [$record->id]);
 	}
 
 	/**

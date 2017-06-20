@@ -33,5 +33,10 @@ return [
     'cover_id'=> 'Paveikslėlis',
     'category_id' => 'Kategorija',
     'slug' => 'Draugiškas URL',
+    'translation' => 'Vertimas',
+    'image' => 'Paveikslėlis',
+    'id' => 'ID',
+    'count' => 'Eilės nr.',
+    'updated_at' => 'Koreguota',
 
 ];

@@ -16,7 +16,7 @@
                     <thead>
                     <tr>
                         @foreach($list[0] as $key => $value)
-                            <th>{{$key}}</th>
+                            <th>{{trans('app.' . $key)}}</th>
                         @endforeach
                         <th></th><th></th>
                     </tr>
@@ -81,11 +81,11 @@
                             @endforeach
                             @if(isset ($edit))
                                 <td><a class="btn btn-primary btn-sm" href="{{route($edit, $record['id'])}}"><i
-                                                class="fa fa-pencil fa-sm" aria-hidden="true"></i> Edit</a></td>
+                                                class="fa fa-pencil fa-sm" aria-hidden="true"></i> {{trans('app.edit')}}</a></td>
                             @endif
                             @if(isset ($delete))
                                 <td><a id="del" onclick="deleteItem('{{route($delete, $record['id'])}}')"
-                                       class="btn btn-danger btn-sm"><i class="fa fa-trash-o fa-sm"></i> Delete</a></td>
+                                       class="btn btn-danger btn-sm"><i class="fa fa-trash-o fa-sm"></i> {{trans('app.delete')}}</a></td>
                             @endif
                         </tr>
                     @endforeach

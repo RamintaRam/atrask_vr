@@ -33,6 +33,11 @@ return [
     'cover_id'=> 'Image',
     'category_id' => 'Category',
     'slug' => 'SLUG',
+    'translation' => 'Translation',
+    'image' => 'Image',
+    'id' => 'ID',
+    'count' => 'Count',
+    'updated_at' => 'Updated at',
 
 
 ];

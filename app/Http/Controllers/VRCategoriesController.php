@@ -121,6 +121,17 @@ class VRCategoriesController extends Controller
      */
     public function adminUpdate($id)
     {
+        $data = request()->all();
+
+        $record = VRCategories::find($id);
+        $record->update($data);
+
+        $data['record_id']= $id;
+
+        VRCategoriesTranslations::updateOrCreate([
+            'record_id' => $id,
+            'language_code' => $data ['language_code']
+        ], $data);
 
     }
 

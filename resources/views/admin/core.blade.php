@@ -6,9 +6,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="UTF-8">
     <title>Title</title>
+
 </head>
 <body>
 @include('admin.menu')
+
+@include('admin.navi-bar')
 
 @yield('content')
 
