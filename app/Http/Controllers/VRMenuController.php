@@ -87,11 +87,10 @@ class VRMenuController extends Controller
     public function adminEdit($id)
     {
         $record = VRMenu::find($id);
+
         $record['url'] = $record['translation']['url'];
         $record['name'] = $record['translation']['name'];
         $record['language_code'] = $record['translation']['language_code'];
-
-
 
         $config = $this->getFormData();
 

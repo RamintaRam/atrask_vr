@@ -11,20 +11,20 @@
 
             @foreach($fields as $field)
                 @if(isset ($field['key']))
-                    {!! Form::label($field['key'], trans('app.' . $field['key'])) !!}<br/>
+                    {!! Form::label($field['key'], trans('app.' . $field['key'])) !!}<br>
 
                     @if($field['type'] == 'dropDown')
 
                         @if(isset($record[$field['key']]))
                             @if($field['key'] == 'language_code')
-                                {{Form::select($field['key'], $field['option'], $record[$field['key']] )}}<br/><br/>
+                                {{Form::select($field['key'], $field['option'], $record[$field['key']] )}}<br><br>
                             @else
                                 {{Form::select($field['key'], $field['option'], $record[$field['key']], ['placeholder'=>''])}}
                                 <br/><br/>
                             @endif
                         @else
                             @if($field['key'] == 'language_code')
-                                {{Form::select($field['key'], $field['option'], null )}}<br/><br/>
+                                {{Form::select($field['key'], $field['option'], null )}}<br><br>
                             @else
                                 {{Form::select($field['key'], $field['option'], null, ['placeholder'=>''])}}
                                 <br/><br/>
@@ -34,31 +34,37 @@
 
                     @elseif($field['type'] == 'singleLine')
                         @if(isset($record[$field['key']]))
-                            {!! Form::text ($field['key'], $record[$field['key']])!!}<br/><br/>
+                            {!! Form::text ($field['key'], $record[$field['key']])!!}<br><br>
                         @else
-                            {!! Form::text ($field['key'])!!}<br/><br/>
+                            {!! Form::text ($field['key'])!!}<br><br>
                         @endif
 
                     @elseif($field['type'] == 'checkBox')
                         @if(isset($record[$field['key']]))
                             @foreach($field['option'] as $option)
-                                {{Form::checkbox($option['name'],$option['value'], $record[$field['key']])}}
+                                {{Form::checkbox($option['name'],$option['value'], $record[$field['key']])}}<br>
                                 <br/>
                             @endforeach
                         @else
                             @foreach($field['option'] as $option)
-                                {{ Form::checkbox($option['name'], $option['value'])}} {{$option['title']}} <br/>
+                                {{ Form::checkbox($option['name'], $option['value'])}} {{$option['title']}} <br><br>
                             @endforeach
                         @endif
 
                     @elseif($field['type'] == 'file')
+
+
                         @if(isset($record[$field['key']]))
-                                {{Form::file('file'),$record[$field['key']]}}
+                            <img src = {{asset($record['path'])}}  width="80" >
+
+                            {{Form::file('file'),$record[$field['key']]}}
+                            <br>
                         @else
                             <div class="form-group">
                                 {{Form::file('file')}}
                             </div>
                         @endif
+
                     @endif
                     @endif
 
