@@ -141,11 +141,10 @@ class VRPagesController extends Controller
 
             $data['cover_id'] = $record->id;
         }
-        elseif("delete" == true)
+        elseif(isset($data["delete"]))
         {
             $data['cover_id'] = null;
         }
-
 
 
         $record = VRPages::find($id);
@@ -176,7 +175,10 @@ class VRPagesController extends Controller
     public function adminDestroy($id)
     {
         VRPagesTranslations::destroy(VRPagesTranslations::where('record_id', $id)->pluck('id')->toArray());
-        VRResources::find(VRPages::find($id)->cover_id)->delete();
+
+        if (VRPages::find($id)->cover_id === null)
+            VRResources::find(VRPages::find($id)->cover_id)->delete();
+
         VRPages::destroy($id);
 
         return json_encode(["success" => true, "id" => $id]);
