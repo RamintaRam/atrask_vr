@@ -141,10 +141,10 @@ class VRPagesController extends Controller
 
             $data['cover_id'] = $record->id;
         }
-        //TODO check if delete, then remove cover_id
-
-
-
+        elseif("delete" == true)
+        {
+            $data['cover_id'] = null;
+        }
 
 
 
