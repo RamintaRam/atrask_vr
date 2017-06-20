@@ -47,8 +47,8 @@
 
 
                                     @elseif($key == 'role')
-                                        @if(isset($value['name']))
-                                            {{$value['name']}}
+                                        @if(isset($value['role_id']))
+                                            {{$value['role_id']}}
                                         @else
                                             -
                                         @endif

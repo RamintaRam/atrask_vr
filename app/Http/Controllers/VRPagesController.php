@@ -157,10 +157,6 @@ class VRPagesController extends Controller
         ], $data);
 
 
-//        $dataFromModel = new VRPages();
-//        $config['fields'] = $dataFromModel->getFillable();
-//        $config['tableName'] = $dataFromModel->getTableName();
-
         return redirect(route('app.pages.edit', $record->id));
     }
 
