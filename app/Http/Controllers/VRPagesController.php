@@ -76,7 +76,6 @@ class VRPagesController extends Controller
 //        ]);
 
 
-
         return redirect()->route('app.pages.edit', [$record->id]);
     }
 
@@ -120,9 +119,6 @@ class VRPagesController extends Controller
         $config['record'] = $record;
 
 
-
-
-
         return view('admin.create-form', $config);
     }
 
@@ -137,9 +133,24 @@ class VRPagesController extends Controller
     {
         $data = request()->all();
 
+
+        if (request()->file('file')) {
+            $resources = request()->file('file');
+            $uploadFile = new VRResourcesController();
+            $record = $uploadFile->upload($resources);
+
+            $data['cover_id'] = $record->id;
+        }
+        //TODO check if delete, then remove cover_id
+
+
+
+
+
+
         $record = VRPages::find($id);
         $record->update($data);
-        $data ['record_id']= $id;
+        $data ['record_id'] = $id;
 
         VRPagesTranslations::updateOrCreate([
             'record_id' => $id,
@@ -147,31 +158,13 @@ class VRPagesController extends Controller
         ], $data);
 
 
-        $dataFromModel = new VRPages();
-        $config['fields'] = $dataFromModel->getFillable();
-        $config['tableName'] = $dataFromModel->getTableName();
-
-//
-//        foreach ($config['fields'] as $key => $value) {
-//            if ($value == 'cover_id') {
-//                $value['path'];
-//            } else {
-//                return "no data";
-//            }
-//        }
-
-
-
-//        VRResources::updateOrCreate([
-//            'id' => $id,
-//            'path' => $data['path']
-//        ], $data);
-
-
-
+//        $dataFromModel = new VRPages();
+//        $config['fields'] = $dataFromModel->getFillable();
+//        $config['tableName'] = $dataFromModel->getTableName();
 
         return redirect(route('app.pages.edit', $record->id));
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -183,7 +176,7 @@ class VRPagesController extends Controller
     public function adminDestroy($id)
     {
         VRPagesTranslations::destroy(VRPagesTranslations::where('record_id', $id)->pluck('id')->toArray());
-
+        VRResources::find(VRPages::find($id)->cover_id)->delete();
         VRPages::destroy($id);
 
         return json_encode(["success" => true, "id" => $id]);
@@ -230,7 +223,6 @@ class VRPagesController extends Controller
             ];
 
 
-
         $config['fields'][] =
             [
                 "type" => "singleLine",
@@ -242,16 +234,16 @@ class VRPagesController extends Controller
                 "type" => "file",
                 "key" => "cover_id",
 //                "option" => VRResources::pluck('path', 'id')->toArray(),
-            ];
+        ];
 
 
-        $config['fields'][]=
+        $config['fields'][] =
             [
                 "type" => "checkBox",
                 "key" => "delete",
                 "option" => [[
                     "name" => "delete",
-                    "value" =>"true",
+                    "value" => "true",
                     "title" => "delete photo"
                 ]]
             ];

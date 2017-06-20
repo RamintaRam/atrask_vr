@@ -68,7 +68,7 @@
                                     @elseif($key == 'image')
 
                                         @if(isset($value['path']))
-                                            <img src = {{$value['path']}} height="80" width="80">
+                                            <img src = {{$value['path']}} width="80">
                                         @else
                                             -
                                         @endif
