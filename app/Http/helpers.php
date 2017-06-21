@@ -29,6 +29,6 @@ function getActiveLanguages()
 // kad galėtume pashareinti į frontend blade.
 function getFrontEndMenu()
 {
-    $data = VRMenu::get()->toArray();
+    $data = VRMenu::where('vr_parent_id', null)->get()->toArray();
     return $data;
 }
