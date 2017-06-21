@@ -4,4 +4,4 @@ Underscore'ai nėra būtini, tiesiog pvz., kad kaip aduosime, taip turėsime ir 
 
 @include('frontend.menu')
 
-{!! $menu !!}
+{!! dd($menu) !!}

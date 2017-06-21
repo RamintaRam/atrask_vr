@@ -2,6 +2,8 @@
 
 
 use App\VRLanguageCodes;
+use App\VRMenu;
+
 //helperyje aprašomos funkcijos nei publis, nei private nei protected.
 function getActiveLanguages()
 {
@@ -27,5 +29,6 @@ function getActiveLanguages()
 // kad galėtume pashareinti į frontend blade.
 function getFrontEndMenu()
 {
-    return "menu";
+    $data = VRMenu::get()->toArray();
+    return $data;
 }
