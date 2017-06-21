@@ -11,10 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
+Route::get('/', [
+    'as' => 'frontend.index', 'uses' => 'FrontEndController@index'
+]);
 
 Auth::routes();
 
@@ -111,6 +114,8 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth', 'check if super-admin'
             Route::delete('/', ['as' => 'app.categories.delete', 'uses' => 'VRCategoriesController@adminDestroy']);
         });
     });
+
+
 
 });
 
