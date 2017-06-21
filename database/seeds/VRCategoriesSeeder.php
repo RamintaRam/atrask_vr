@@ -18,11 +18,11 @@ class VRCategoriesSeeder extends Seeder
         ];
 
         $translations = [
-            ["record_id" => "vr_rooms", "name" => "VR kambariai", "language_code" => "LT"],
-            ["record_id" => "vr_rooms", "name" => "VR rooms", "language_code" => "EN"],
-            ["record_id" => "vr_rooms", "name" => "VR chambres", "language_code" => "FR"],
-            ["record_id" => "vr_rooms", "name" => "BP комнаты", "language_code" => "RU"],
-            ["record_id" => "vr_rooms", "name" => "VR räume", "language_code" => "DE"],
+            ["record_id" => "vr_rooms", "name" => "VR kambariai", "language_code" => "lt"],
+            ["record_id" => "vr_rooms", "name" => "VR rooms", "language_code" => "en"],
+            ["record_id" => "vr_rooms", "name" => "VR chambres", "language_code" => "fr"],
+            ["record_id" => "vr_rooms", "name" => "BP комнаты", "language_code" => "ru"],
+            ["record_id" => "vr_rooms", "name" => "VR räume", "language_code" => "de"],
         ];
 
         DB::beginTransaction();
