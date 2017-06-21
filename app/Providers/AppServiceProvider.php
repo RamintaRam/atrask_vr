@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,8 +15,26 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+//jeigu segmentas (t.y. po adreso pirmas =odis po slasho, t.y. "admin"), nelygus "admin", lange išmes
+        // pashare'intą info.
+//        if(request()->segment(1) !== 'admin')
+//
+//            View::share('_a_', 'Labas');
+
 
         require base_path('App/Http/helpers.php');
+
+        if(request()->segment(1) !== 'admin')
+        View::share('menu', getFrontEndMenu());
+
+
+
+
+        //jeigu norime į visus blade'us paduoti kažkokį kintamąjį, pvz:
+
+
+
+
     }
 
     /**

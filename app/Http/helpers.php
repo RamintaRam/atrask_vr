@@ -2,7 +2,7 @@
 
 
 use App\VRLanguageCodes;
-
+//helperyje aprašomos funkcijos nei publis, nei private nei protected.
 function getActiveLanguages()
 {
     $config = VRLanguageCodes::where('is_active', 1)->pluck('name', 'id')->toArray();
@@ -20,5 +20,12 @@ function getActiveLanguages()
 
     $config = array($locale => $config[$locale]) + $config;
     return $config;
+
 }
 
+//apsirašom funkciją, kurią naudosime AppServicePtovider,
+// kad galėtume pashareinti į frontend blade.
+function getFrontEndMenu()
+{
+    return "menu";
+}
