@@ -11,7 +11,7 @@
 <body>
 @include('admin.menu')
 
-@include('admin.navi-bar')
+
 
 @yield('content')
 

@@ -6,25 +6,13 @@ html, body
     width: 100%;
 }
 
-/*#menu2 {*/
-    /*background-color: black;*/
-    /*display: -webkit-flex;*/
-    /*-webkit-justify-content: space-around;*/
-    /*justify-content: space-around;*/
-/*}*/
-
-/*.dropdown-menu*/
-/*{*/
-    /*float: right;*/
-/*}*/
-
 
 #menu
 {
     background-color: #262626;
     height: 100%;
     width: 20%;
-    /*position: fixed;*/
+    position: fixed;
     padding-left: 20px;
   
 

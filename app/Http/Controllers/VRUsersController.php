@@ -119,6 +119,9 @@ class VRUsersController extends Controller {
 
         $record->update($data);
 
+        //TODO ištraukti user roles connection where user_id = $record_id
+        //TODO update with role_id
+
         VRConnectionsUsersRoles::updateOrCreate([
             'user_id' => $id,
             'role_id' => $data['role_id']
