@@ -55,7 +55,7 @@
 
 
                         @if(isset($record[$field['key']]))
-                            <img src = {{asset($record['path'])}}  width="80" >
+                            <img src = {{asset($record['path'])}}  width="170" >
 
                             {{Form::file('file'),$record[$field['key']]}}
                             <br>

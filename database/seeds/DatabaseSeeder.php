@@ -1,5 +1,7 @@
 <?php
 
+use App\VRCategories;
+use App\VRCategoriesTranslations;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,7 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call(VRRolesSeeder::class);
-         $this->call(VRLanguagesSeeder::class);
+        $this->call(VRRolesSeeder::class);
+        $this->call(VRLanguagesSeeder::class);
+        $this->call(VRCategoriesSeeder::class);
+
     }
 }
