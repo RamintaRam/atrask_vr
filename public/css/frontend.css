@@ -4,4 +4,26 @@
     display: -webkit-flex;
     -webkit-justify-content: space-around;
     justify-content: space-around;
+    color: #F0F0F0;
+}
+
+ul li .dropdown-menu
+{
+    background-color: black;
+}
+
+#menu a
+{
+    color: #F0F0F0;
+}
+
+#menu ul .open a
+{
+    background-color: unset;
+}
+
+#menu a:hover, #menu a:focus, #menu ul .active a
+{
+    background-color: unset;
+    color: #fd7b52;
 }
