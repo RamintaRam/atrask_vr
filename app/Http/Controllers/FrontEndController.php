@@ -22,7 +22,7 @@ class FrontEndController extends Controller {
 	public function showPage($slug)
     {
         $data = VRPagesTranslations::where('language_code', $slug)->with(['page'])->first()->toArray();
-dd($data);
+//dd($data);
 
         return view('frontend.showPages', $data);
     }

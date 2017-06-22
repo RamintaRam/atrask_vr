@@ -38,5 +38,7 @@ return [
     'id' => 'ID',
     'count' => 'Eilės nr.',
     'updated_at' => 'Koreguota',
+    'lang' => 'Kalba',
+    'rooms' => 'VR Kambariai',
 
 ];

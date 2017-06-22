@@ -38,6 +38,8 @@ return [
     'id' => 'ID',
     'count' => 'Count',
     'updated_at' => 'Updated at',
+    'lang' => 'Language',
+    'rooms' => 'VR Rooms',
 
 
 ];
