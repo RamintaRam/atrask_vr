@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use App\VRPages;
+use App\VRPagesTranslations;
 use Illuminate\Routing\Controller;
 
 class FrontEndController extends Controller {
@@ -12,8 +14,19 @@ class FrontEndController extends Controller {
 	 */
 	public function index()
 	{
+
 		return view('frontend.front-end');
 	}
+
+
+	public function showPage($slug)
+    {
+        $data = VRPagesTranslations::where('language_code', $slug)->with(['page'])->first()->toArray();
+dd($data);
+
+        return view('frontend.showPages', $data);
+    }
+
 
 	/**
 	 * Show the form for creating a new resource.

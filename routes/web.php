@@ -16,8 +16,12 @@
 //});
 
 Route::get('/', [
-    'as' => 'frontend.index', 'uses' => 'FrontEndController@index'
-]);
+    'as' => 'frontend.index', 'uses' => 'FrontEndController@index']);
+
+Route::get('/{lang}/pages/{slug}', ['as' => 'app.user.show', 'uses' => 'FrontEndController@showPage']);
+
+
+
 
 Auth::routes();
 

@@ -6,3 +6,6 @@ Underscore'ai nėra būtini, tiesiog pvz., kad kaip aduosime, taip turėsime ir 
 
 @section('content')
 
+
+
+@endsection
