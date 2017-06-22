@@ -3,6 +3,7 @@
 
 use App\VRLanguageCodes;
 use App\VRMenu;
+use App\VRPages;
 
 //helperyje aprašomos funkcijos nei publis, nei private nei protected.
 function getActiveLanguages()
@@ -29,6 +30,13 @@ function getActiveLanguages()
 // kad galėtume pashareinti į frontend blade.
 function getFrontEndMenu()
 {
-    $data = VRMenu::where('vr_parent_id', null)->get()->toArray();
+    $data = VRMenu::where('vr_parent_id', null)->with('children')->get()->toArray();
     return $data;
+}
+
+function getVRRooms()
+{
+    $data = VRPages::where('category_id', '=', 'vr_rooms')->get()->toArray();
+    return $data;
+
 }

@@ -68,6 +68,7 @@ class VRPagesController extends Controller
         $record = VRPages::create($data);
 
         $data['record_id'] = $record->id;
+        $data['slug'] = str_slug($data['title'], '-');
         VRPagesTranslations::create($data);
 
 //        VRConnectionsPagesResources::create([

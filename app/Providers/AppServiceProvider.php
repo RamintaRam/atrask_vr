@@ -24,9 +24,12 @@ class AppServiceProvider extends ServiceProvider
 
         require base_path('App/Http/helpers.php');
 
-        if (request()->segment(1) !== 'admin')
+        if (request()->segment(1) !== 'admin') {
             View::share('menu', getFrontEndMenu());
+            View::share('lang', getActiveLanguages());
+            View::share('rooms', getVRRooms());
 
+        }
         //jeigu norime į visus blade'us paduoti kažkokį kintamąjį, pvz:
     }
 

@@ -37,4 +37,10 @@ class VRMenu extends CoreModel
             ->where('language_code', $lang);
     }
 
+
+    public function children()
+    {
+        return $this->hasMany(VRMenu::class, 'vr_parent_id', 'id')->with('children');
+    }
+
 }
