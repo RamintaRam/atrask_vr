@@ -1,5 +1,4 @@
-#menu
-{
+#menu {
     background-color: black;
     display: -webkit-flex;
     -webkit-justify-content: space-around;
@@ -7,24 +6,35 @@
     color: #F0F0F0;
 }
 
-ul li .dropdown-menu
-{
+ul li .dropdown-menu {
     background-color: black;
 }
 
-#menu a
-{
+#menu a {
     color: #F0F0F0;
 }
 
-#menu ul .open a
-{
+#menu ul .open a {
     background-color: unset;
 }
 
-#menu a:hover, #menu a:focus, #menu ul .active a
-{
+#menu a:hover, #menu a:focus, #menu ul .active a {
     background-color: unset;
     color: #fd7b52;
+}
+
+.body {
+
+    background-color: #FD7B52;
+    text-align: center;
+}
+
+.text
+{
+    color: #f2f2f2;
+    font-size: 20px;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    word-wrap: break-word;
+    line-height: 17px;
 }
 

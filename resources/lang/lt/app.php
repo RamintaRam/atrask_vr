@@ -40,5 +40,10 @@ return [
     'updated_at' => 'Koreguota',
     'lang' => 'Kalba',
     'rooms' => 'VR Kambariai',
+    'status' => 'Statusas',
+    'user_id' => 'Vartotojo ID',
+    'aproved' => 'Patvirtintas',
+    'canceled' => 'Atšauktas',
+    'pending' => 'Nepatvirtintas',
 
 ];

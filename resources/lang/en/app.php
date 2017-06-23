@@ -40,6 +40,11 @@ return [
     'updated_at' => 'Updated at',
     'lang' => 'Language',
     'rooms' => 'VR Rooms',
+    'user_id' => 'User ID',
+    'status' => 'Status',
+    'aproved' => 'Aproved',
+    'canceled' => 'Canceled',
+    'pending' => 'Pending',
 
 
 ];

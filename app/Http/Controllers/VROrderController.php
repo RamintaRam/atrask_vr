@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Models\VRUsers;
 use App\VROrder;
 use Illuminate\Routing\Controller;
 
@@ -16,9 +17,9 @@ class VROrderController extends Controller {
         $dataFromModel = new VROrder();
         $config['tableName'] = $dataFromModel->getTableName();
         $config['list'] = VROrder::get()->toArray();
-        $config['new'] = 'app.categories.create';
-        $config['edit'] = 'app.categories.edit';
-        $config['delete'] = 'app.categories.delete';
+        $config['new'] = 'app.order.create';
+        $config['edit'] = 'app.order.edit';
+        $config['delete'] = 'app.order.delete';
 
         return view('admin.list', $config);
 	}
@@ -29,9 +30,16 @@ class VROrderController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function adminCreate()
 	{
-		//
+        $config = $this->getFormData();
+        $dataFromModel = new VROrder();
+        $config['tableName'] = $dataFromModel->getTableName();
+        $config['route'] = route('app.order.create');
+
+        //getFormData() funkcija apraryta apacioje.
+
+        return view('admin.create-form', $config);
 	}
 
 	/**
@@ -40,7 +48,7 @@ class VROrderController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function adminStore()
 	{
 		//
 	}
@@ -52,7 +60,7 @@ class VROrderController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function adminShow($id)
 	{
 		//
 	}
@@ -64,7 +72,7 @@ class VROrderController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function adminEdit($id)
 	{
 		//
 	}
@@ -76,7 +84,7 @@ class VROrderController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function adminUpdate($id)
 	{
 		//
 	}
@@ -88,9 +96,38 @@ class VROrderController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function adminDestroy($id)
 	{
 		//
 	}
 
+
+    public function getFormData()
+    {
+//        $lang = request('language_code');
+//        if ($lang == null)
+//            $lang = app()->getLocale();
+
+        $config['fields'][] = [
+            "type" => "dropDown",
+            "key" => "user_id",
+            "option" => VRUsers::pluck('email', 'id'),
+        ];
+
+        $config['fields'][] =
+            [
+                "type" => "dropDown",
+                "key" => "status",
+                "option" => [
+                    'pending'=>trans('app.pending'),
+                    'canceled'=>trans('app.canceled'),
+                    'aproved'=>trans('app.aproved'),
+                ]
+
+];
+
+
+
+        return $config;
+    }
 }

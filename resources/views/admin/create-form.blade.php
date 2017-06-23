@@ -28,6 +28,7 @@
                             @else
                                 {{Form::select($field['key'], $field['option'], null, ['placeholder'=>''])}}
                                 <br/><br/>
+
                             @endif
                         @endif
 
