@@ -15,10 +15,9 @@
 //    return view('welcome');
 //});
 
-Route::get('/', [
-    'as' => 'frontend.index', 'uses' => 'FrontEndController@index']);
+Route::get('/', ['as' => 'frontend.index', 'uses' => 'FrontEndController@index']);
 
-Route::get('/{lang}/pages/{slug}', ['as' => 'app.user.show', 'uses' => 'FrontEndController@showPage']);
+
 
 
 
@@ -123,3 +122,4 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth', 'check if super-admin'
 
 });
 
+Route::get('/{lang}/pages/{slug}', ['as' => 'app.user.show', 'uses' => 'FrontEndController@showPage']);

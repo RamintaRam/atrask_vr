@@ -1,3 +1,5 @@
+
+
 <nav class="navbar navbar-default" id="menu">
     <div class="container-fluid">
 
@@ -7,18 +9,23 @@
                 <ul class="nav navbar-nav">
                     @if($menuItem['children'] != null)
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false"> {{($menuItem['translation']['name'])}}
+                            <a href="{{($menuItem['translation']['url'])}}" class="dropdown-toggle"
+                               data-toggle="dropdown" role="button" aria-haspopup="true"
+                               aria-expanded="false"> {{($menuItem['translation']['name'])}}
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 @foreach($menuItem['children'] as $child)
-                                    <li><a href="/{{$child['translation']['url']}}">{{($child['translation']['name'])}}</a></li>
+                                    <li>
+                                        <a href="/{{$child['translation']['url']}}">{{($child['translation']['name'])}}</a>
+                                    </li>
                                 @endforeach
                             </ul>
                         </li>
 
-                    @else()
-                        <li><a href="/{{$child['translation']['url']}}">{{$child['translation']['name']}}</a></li>
+                    @else
+                        <li>
+                            <a href="/{{$menuItem['translation']['url']}}">{{$menuItem['translation']['name']}}</a>
+                        </li>
                     @endif
                 </ul>
             @endforeach
@@ -43,33 +50,17 @@
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         @foreach($rooms as $key => $value)
-
-
-
-                            <li><a href="{{app()->getLocale() . '/pages/' . $value['translation']['slug']}}">{{($value['translation']['title'])}}</a></li>
+                            <li>
+                                <a href="/{{app()->getLocale() . '/pages/' . $value['translation']['slug']}}">{{($value['translation']['title'])}}</a>
+                            </li>
 
                         @endforeach
                     </ul>
                 </li>
             </ul>
 
-
-
-
-
-
-
-
-
-            {{--<form class="navbar-form navbar-left">--}}
-            {{--<div class="form-group">--}}
-            {{--<input type="text" class="form-control" placeholder="Search">--}}
-            {{--</div>--}}
-            {{--<button type="submit" class="btn btn-default">Submit</button>--}}
-            {{--</form>--}}
-
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+        </div>
+    </div>
 </nav>
 
 

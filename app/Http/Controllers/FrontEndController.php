@@ -14,16 +14,15 @@ class FrontEndController extends Controller {
 	 */
 	public function index()
 	{
-
-		return view('frontend.front-end');
+		return view('frontend.core');
 	}
 
 
-	public function showPage($slug)
+	public function showPage($lang, $slug)
     {
-        $data = VRPagesTranslations::where('language_code', $slug)->with(['page'])->first()->toArray();
-//dd($data);
+        $data = VRPagesTranslations::where('slug', $slug)->where('language_code', $lang)->with(['page'])->first()->toArray();
 
+//        dd($data);
         return view('frontend.showPages', $data);
     }
 

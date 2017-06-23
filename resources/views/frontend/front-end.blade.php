@@ -1,11 +1,20 @@
-{{--AppServiceProvider'yje apsirašėm, kad share'inam kažką blade.
-Underscore'ai nėra būtini, tiesiog pvz., kad kaip aduosime, taip turėsime ir įsirašyti blade.--}}
+
+        {{--<!DOCTYPE html>--}}
+{{--<html lang="en">--}}
+{{--<head>--}}
+    {{--<meta charset="UTF-8">--}}
+    {{--<meta name="csrf-token" content="{{ csrf_token() }}">--}}
+    {{--<link rel="stylesheet" type="text/css" href="{{asset('css/frontend.css')}}">--}}
+    {{--<link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}">--}}
 
 
-@extends('frontend.core')
 
-@section('content')
+{{--</head>--}}
+{{--<body>--}}
+{{--@include('frontend.menu')--}}
+{{--@yield('content')--}}
 
 
+{{--</body>--}}
 
-@endsection
+{{--</html>--}}
