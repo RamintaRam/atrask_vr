@@ -50,7 +50,12 @@ class VROrderController extends Controller {
 	 */
 	public function adminStore()
 	{
-		//
+        $data = request()->all();
+
+        $record = VROrder::create($data);
+
+
+        return redirect()->route('app.order.edit', [$record->id]);
 	}
 
 	/**
@@ -74,7 +79,15 @@ class VROrderController extends Controller {
 	 */
 	public function adminEdit($id)
 	{
-		//
+        $record = VROrder::find($id)->toArray();
+        $config = $this->getFormData();
+        $dataFromModel = new VROrder();
+        $config['tableName'] = $dataFromModel->getTableName();
+        $config['route'] = route('app.order.edit', $id);
+
+        $config['record'] = $record;
+
+        return view('admin.create-form', $config);
 	}
 
 	/**
@@ -86,7 +99,10 @@ class VROrderController extends Controller {
 	 */
 	public function adminUpdate($id)
 	{
-		//
+        $data = request()->all();
+
+        $record = VROrder::find($id);
+        $record->update($data);
 	}
 
 	/**
