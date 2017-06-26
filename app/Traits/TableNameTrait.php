@@ -8,5 +8,7 @@ trait TableNameTrait
     {
         $tableName = substr($this->table, 3);
         return $tableName;
+
+   //     return woth(new static) ->getTable();
     }
 }

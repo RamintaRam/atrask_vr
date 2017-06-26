@@ -28,53 +28,57 @@
                             @else
                                 {{Form::select($field['key'], $field['option'], null, ['placeholder'=>''])}}
                                 <br/><br/>
+                                @if($field['key'] == 'time')
+
+
+
+                                @endif
+                            @endif
+                        @endif
+
+                            @elseif($field['type'] == 'singleLine')
+                                @if(isset($record[$field['key']]))
+                                    {!! Form::text ($field['key'], $record[$field['key']])!!}<br><br>
+                                @else
+                                    {!! Form::text ($field['key'])!!}<br><br>
+                                @endif
+
+                            @elseif($field['type'] == 'checkBox')
+                                @if(isset($record[$field['key']]))
+                                    @foreach($field['option'] as $option)
+                                        {{Form::checkbox($option['name'],$option['value'], $record[$field['key']])}}<br>
+                                        <br/>
+                                    @endforeach
+                                @else
+                                    @foreach($field['option'] as $option)
+                                        {{ Form::checkbox($option['name'], $option['value'])}} {{$option['title']}} <br>
+                                        <br>
+                                    @endforeach
+                                @endif
+
+                            @elseif($field['type'] == 'file')
+
+
+                                @if(isset($record[$field['key']]))
+                                    <img src={{asset($record['path'])}}  width="170">
+
+                                    {{Form::file('file'),$record[$field['key']]}}
+                                    <br>
+                                @else
+                                    <div class="form-group">
+                                        {{Form::file('file')}}
+                                    </div>
+                                @endif
 
                             @endif
                         @endif
 
-
-                    @elseif($field['type'] == 'singleLine')
-                        @if(isset($record[$field['key']]))
-                            {!! Form::text ($field['key'], $record[$field['key']])!!}<br><br>
-                        @else
-                            {!! Form::text ($field['key'])!!}<br><br>
-                        @endif
-
-                    @elseif($field['type'] == 'checkBox')
-                        @if(isset($record[$field['key']]))
-                            @foreach($field['option'] as $option)
-                                {{Form::checkbox($option['name'],$option['value'], $record[$field['key']])}}<br>
-                                <br/>
-                            @endforeach
-                        @else
-                            @foreach($field['option'] as $option)
-                                {{ Form::checkbox($option['name'], $option['value'])}} {{$option['title']}} <br><br>
-                            @endforeach
-                        @endif
-
-                    @elseif($field['type'] == 'file')
+                        @endforeach
 
 
-                        @if(isset($record[$field['key']]))
-                            <img src = {{asset($record['path'])}}  width="170" >
-
-                            {{Form::file('file'),$record[$field['key']]}}
-                            <br>
-                        @else
-                            <div class="form-group">
-                                {{Form::file('file')}}
-                            </div>
-                        @endif
-
-                    @endif
-                    @endif
-
-                    @endforeach
-
-
-                    {!! Form::submit(trans('app.create') , ['class' => 'btn btn-success']) !!}
-                    <a class="btn btn-primary"
-                       href="{{ route('app.' . $tableName . '.index') }}">{{trans('app.' . $tableName)}}</a>
+                        {!! Form::submit(trans('app.create') , ['class' => 'btn btn-success']) !!}
+                        <a class="btn btn-primary"
+                           href="{{ route('app.' . $tableName . '.index') }}">{{trans('app.' . $tableName)}}</a>
 
         </div>
     </div>
