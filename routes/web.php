@@ -85,12 +85,14 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth', 'check if super-admin'
     Route::group(['prefix' => 'orders'], function () {
         Route::get('/', ['as' => 'app.order.index','uses' => 'VROrderController@adminIndex']);
         Route::get('/create', ['as' => 'app.order.create','uses' => 'VROrderController@adminCreate']);
+        Route::get('/reservations', ['as' => 'app.order.reservations','uses' => 'VROrderController@adminReservations']);
         Route::post('/create', ['as' => 'app.order.store', 'uses' => 'VROrderController@adminStore']);
         Route::group(['prefix' => '{id}'], function () {
             Route::get('/edit', ['as' => 'app.order.edit', 'uses' => 'VROrderController@adminEdit']);
             Route::post('/edit', ['as' => 'app.order.update', 'uses' => 'VROrderController@adminUpdate']);
             Route::get('/', ['as' => 'app.order.show', 'uses' => 'VROrderController@adminShow']);
             Route::delete('/', ['as' => 'app.order.delete', 'uses' => 'VROrderController@adminDestroy']);
+
         });
     });
 
