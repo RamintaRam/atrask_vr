@@ -181,7 +181,7 @@ class VROrderController extends Controller
         $config['fields'][] =
             [
                 "type" => "dropDown",
-                "key" => "time",
+                "key" => "date",
                 "option" => $dates
             ];
 

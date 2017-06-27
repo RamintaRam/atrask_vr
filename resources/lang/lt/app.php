@@ -45,5 +45,6 @@ return [
     'aproved' => 'Patvirtintas',
     'canceled' => 'Atšauktas',
     'pending' => 'Nepatvirtintas',
+    'date' => 'Diena',
 
 ];

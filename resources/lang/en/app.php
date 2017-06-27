@@ -45,6 +45,7 @@ return [
     'aproved' => 'Aproved',
     'canceled' => 'Canceled',
     'pending' => 'Pending',
+    'date' => 'Date',
 
 
 ];
