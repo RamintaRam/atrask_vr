@@ -16,14 +16,14 @@
                     @if($field['type'] == 'dropDown')
 
                         @if(isset($record[$field['key']]))
-                            @if($field['key'] == 'language_code')
+                            @if(in_array($field['key'], ['language_code', 'category_id', 'time', 'vr_rooms']))
                                 {{Form::select($field['key'], $field['option'], $record[$field['key']] )}}<br><br>
                             @else
                                 {{Form::select($field['key'], $field['option'], $record[$field['key']], ['placeholder'=>''])}}
                                 <br/><br/>
                             @endif
                         @else
-                            @if($field['key'] == 'language_code')
+                            @if(in_array($field['key'], ['language_code', 'category_id', 'date', 'vr_rooms']))
                                 {{Form::select($field['key'], $field['option'], null )}}<br><br>
                             @else
                                 {{Form::select($field['key'], $field['option'], null, ['placeholder'=>''])}}
@@ -103,17 +103,24 @@
 
 
 
-        if($('#date').length > 0 &&
+        if($('#time').length > 0 &&
             $('#vr_rooms').length > 0);
         console.log('cool');
 
-        $('#date').bind('change', function() {
-            console.log($('#date').val())
-        });
+        $('#time').bind('change', getAvailableHour);
 
-        $('#vr_rooms').bind('change', function() {
-            console.log($('#vr_rooms').val())
-        });
+        $('#vr_rooms').bind('change', getAvailableHour);
+
+
+        function getAvailableHour()
+        {
+            console.log($('#vr_rooms').val());
+            console.log($('#time').val());
+        }
+
+
+
+
 
 
     </script>
