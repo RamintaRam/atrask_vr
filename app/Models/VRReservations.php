@@ -10,3 +10,5 @@ class VRReservations extends Model
 
     protected $fillable = ['id', 'experience_id', 'order_id', 'time'];
 }
+
+
