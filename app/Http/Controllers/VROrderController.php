@@ -4,6 +4,7 @@ use App\Models\VRUsers;
 use App\VROrder;
 use App\VRPages;
 use App\VRPagesTranslations;
+use App\VRReservations;
 use Carbon\Carbon;
 use Illuminate\Routing\Controller;
 
@@ -119,6 +120,23 @@ class VROrderController extends Controller
     public function adminDestroy($id)
     {
         //
+    }
+
+    public function adminReservations()
+    {
+        $data = request()->all();
+
+        $start = Carbon::parse($data['time'])->startOfDay();
+
+        $end = Carbon::parse($data['time'])->endOfDay();
+
+       return VRReservations::where('time', '>=', $start)->
+            where('time', '<=', $end)->pluck('time');
+
+//
+//       dd(VRReservations::get()->toArray());
+
+
     }
 
 
