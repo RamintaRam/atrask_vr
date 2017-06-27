@@ -162,7 +162,7 @@ class VROrderController extends Controller
         $config['fields'][] =
             [
                 "type" => "dropDown",
-                "key" => "pages",
+                "key" => "vr_rooms",
                 "option" => $this->getVRRoomsCategories(),
 
             ];
@@ -174,7 +174,7 @@ class VROrderController extends Controller
 
 
         for ($date = $start_date; $date->lte($end_date); $date->addDay()) {
-            $dates[] = $date->format('Y-m-d');
+            $dates[$date->format('Y-m-d')] = $date->format('Y-m-d');
         }
 
 

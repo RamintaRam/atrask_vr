@@ -98,7 +98,22 @@
             alert($('#language_code').val());
 
 
-        })
+        });
+
+
+
+
+        if($('#date').length > 0 &&
+            $('#vr_rooms').length > 0);
+        console.log('cool');
+
+        $('#date').bind('change', function() {
+            console.log($('#date').val())
+        });
+
+        $('#vr_rooms').bind('change', function() {
+            console.log($('#vr_rooms').val())
+        });
 
 
     </script>
