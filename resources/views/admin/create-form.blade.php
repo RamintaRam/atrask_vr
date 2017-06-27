@@ -23,7 +23,7 @@
                                 <br/><br/>
                             @endif
                         @else
-                            @if(in_array($field['key'], ['language_code', 'category_id', 'date', 'vr_rooms']))
+                            @if(in_array($field['key'], ['language_code', 'category_id', 'time', 'vr_rooms']))
                                 {{Form::select($field['key'], $field['option'], null )}}<br><br>
                             @else
                                 {{Form::select($field['key'], $field['option'], null, ['placeholder'=>''])}}
@@ -105,17 +105,33 @@
 
         if($('#time').length > 0 &&
             $('#vr_rooms').length > 0);
-        console.log('cool');
-
-        $('#time').bind('change', getAvailableHour);
-
-        $('#vr_rooms').bind('change', getAvailableHour);
-
-
-        function getAvailableHour()
         {
+            console.log('cool');
+
+            $('#time').bind('change', getAvailableHour);
+
+            $('#vr_rooms').bind('change', getAvailableHour);
+
+
+            function getAvailableHour() {
             console.log($('#vr_rooms').val());
             console.log($('#time').val());
+
+
+                $.ajax({
+                    url: '{{route('app.order.reservations') }}',
+                    type: 'GET',
+                    data: {
+                        time: $('#time').val(),
+                        vr_rooms: $('#vr_rooms').val()
+                    },
+                    success: function (response) {
+
+                        console.log(response);
+
+                    }
+                });
+            }
         }
 
 
