@@ -14,10 +14,9 @@ class VRReservationsController extends Controller {
 	public function index()
 	{
         $dataFromModel = new VRReservations();
-//        $config['tableName'] = $dataFromModel->getTableName();
+        $config['tableName'] = $dataFromModel->getTableName();
         $config['list'] = VRReservations::get()->toArray();
-        $config['callToAction'] = 'app.users.update';
-dd( $config['list']);
+//dd( $config['list']);
         return view('admin.list', $config);
 	}
 
