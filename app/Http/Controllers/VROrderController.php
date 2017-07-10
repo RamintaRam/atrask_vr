@@ -126,6 +126,8 @@ class VROrderController extends Controller
     {
         $data = request()->all();
 
+        dd($data);
+
         $start = Carbon::parse($data['time'])->startOfDay();
 
         $end = Carbon::parse($data['time'])->endOfDay();

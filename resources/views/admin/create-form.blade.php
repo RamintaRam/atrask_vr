@@ -28,12 +28,14 @@
                             @else
                                 {{Form::select($field['key'], $field['option'], null, ['placeholder'=>''])}}
                                 <br/><br/>
-                                @if($field['key'] == 'time')
+                                {{--@if($field['key'] == 'time')--}}
 
 
 
-                                @endif
+                                {{--@endif--}}
                             @endif
+
+
                         @endif
 
                             @elseif($field['type'] == 'singleLine')
@@ -57,7 +59,6 @@
                                 @endif
 
                             @elseif($field['type'] == 'file')
-
 
                                 @if(isset($record[$field['key']]))
                                     <img src={{asset($record['path'])}}  width="170">
